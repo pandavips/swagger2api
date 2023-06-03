@@ -1,0 +1,42 @@
+<%
+const { apis } = it;
+_%>
+/* eslint-disable */
+// @ts-nocheck
+import request,{ExtraInInternalAxiosRequestConfig} from "./index";
+import qs from "qs";
+
+/**
+ * 注意!
+ * 该文件由 \src\api\swagger2api 下的脚本生成
+ * 请勿手动修改，因为你手动添加的内容很容易就会被脚本覆盖
+ * 如需修改请修改模板文件后执行 pnpm run gen:api
+ **/
+
+export default {
+  <% apis.forEach(function(api,index){ 
+  _%>
+  /**
+   * @description: <%= api.description %>
+
+   */
+  <%= api.apiName %>: (
+  <% if(api.isUrlEndParam){ %>
+  <%= api.params.map((a)=>a+':string').join(',') %>,
+  <% } else if(api.reqType) { %>
+  <%= api.params[0] %>: <%= api.reqType %>,
+  <% } %>
+  config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<<%~ api.resType %>> => {
+    return request({
+      url: `<%= api.url %>`,
+      method: "<%= api.method %>",
+      <% if(!api.isUrlEndParam&&!api.hasQueryParams&&api.reqType){ %>
+      data: <%= api.params[0] -%>,
+      <% }%>
+      ...config
+    });
+  }<%= index===apis.length-1?'':',' -%>
+
+  <% }) %>
+};
