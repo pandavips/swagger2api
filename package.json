@@ -1,0 +1,39 @@
+{
+  "name": "swagger2api",
+  "version": "1.1.3",
+  "description": "swagger转api工具",
+  "keywords": [
+    "swagger",
+    "api"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pandavips/swagger2api"
+  },
+  "homepage": "https://github.com/pandavips/swagger2api",
+  "main": "./dist/main.esm.js",
+  "module": "./dist/main.cjs.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "rollup -c",
+    "build-watch": "rollup -c --watch",
+    "prepare": "npm run build",
+    "publish": "npm publish"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "rollup-plugin-babel": "^4.4.0",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-typescript": "^8.4.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.2",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "rollup": "^2.78.1"
+  },
+  "dependencies": {}
+}
