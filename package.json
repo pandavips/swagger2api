@@ -1,27 +1,32 @@
 {
   "name": "swagger2apis",
-  "version": "1.0.5",
+  "version": "1.0.13",
   "description": "swagger转api工具",
+  "packageManager": "pnpm@7.1.0",
   "type": "module",
   "keywords": [
     "swagger",
     "api"
   ],
+  "author": "pandavips",
   "repository": {
     "type": "git",
     "url": "https://github.com/pandavips/swagger2api"
   },
   "homepage": "https://github.com/pandavips/swagger2api",
-  "main": "./dist/main.cjs.js",
-  "module": "./dist/main.cjs.js",
+  "main": "./dist/main.esm.mjs",
+  "module": "./dist/main.esm.mjs",
   "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rollup -c",
+    "test": "node ./example/index.mjs",
     "build-watch": "rollup -c --watch",
     "prepare": "npm run build",
+    "build": "rollup -c",
     "publish": "npm publish"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -35,13 +40,18 @@
     "rollup-plugin-dts": "^4.2.2",
     "rollup-plugin-terser": "^7.0.2",
     "tslib": "^2.4.0",
-    "@types/node": "^20.2.5",
-    "typescript": "^4.8.2"
+    "@types/node": "^20.2.5"
   },
   "dependencies": {
-    "axios": "^1.4.0",
+    "typescript": "^4.8.2",
     "eta": "^2.2.0",
     "mkdirp": "^3.0.1",
-    "pinyin": "2.11"
+    "pinyin": "2.11",
+    "axios": "^1.4.0"
+  },
+  "peerDependencies": {},
+  "bugs": {
+    "url": "https://github.com/pandavips/swagger2api/issues",
+    "email": "919401990@qq.com"
   }
 }

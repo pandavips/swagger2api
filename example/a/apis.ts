@@ -3,13 +3,6 @@
 import request,{ExtraInInternalAxiosRequestConfig} from "./index";
 import qs from "qs";
 
-/**
- * 注意!
- * 该文件由 \src\api\swagger2api 下的脚本生成
- * 请勿手动修改，因为你手动添加的内容很容易就会被脚本覆盖
- * 如需修改请修改模板文件后执行 pnpm run gen:api
- **/
-
 export default {
   /**
    * @description: 账户相关 - 平台账户（归集地址）
@@ -429,6 +422,20 @@ export default {
   ): Promise<null> => {
     return request({
       url: `/bank/update`,
+      method: "POST",
+            data: data,
+            ...config
+    });
+  },
+  /**
+   * @description: 渠道充提信息接口 - 汇总信息
+   */
+  ChannelDepositWithdrawSummaryPOST: (
+    data: IChannelDepostWithdrawSummaryReq,
+    config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<Required<IChannelDepostWithdrawSummaryResp>> => {
+    return request({
+      url: `/channel/deposit/withdraw/summary`,
       method: "POST",
             data: data,
             ...config
@@ -1826,30 +1833,42 @@ export default {
     });
   },
   /**
-   * @description: 支付渠道管理 - 查询支付渠道列表
+   * @description: 支付渠道管理 - 查询支付渠道帐号列表
    */
-  PaymentChannelQueryListPOST: (
+  PaymentChannelAccountQueryListPOST: (
     data: IQueryPaymentChannelReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<Required<IPaymentChannelResq>[]> => {
     return request({
-      url: `/payment/channel/queryList`,
+      url: `/payment/channel/account/queryList`,
       method: "POST",
             data: data,
             ...config
     });
   },
   /**
-   * @description: 支付渠道管理 - 修改支付渠道
+   * @description: 支付渠道管理 - 新增或修改支付渠道
    */
-  PaymentChannelUpdatePOST: (
+  PaymentChannelAccountUpdatePOST: (
     data: IPaymentChannelReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<null> => {
     return request({
-      url: `/payment/channel/update`,
+      url: `/payment/channel/account/update`,
       method: "POST",
             data: data,
+            ...config
+    });
+  },
+  /**
+   * @description: 支付渠道管理 - 查询支付渠道列表（boss分配给包网商的）
+   */
+  PaymentChannelQueryListPOST: (
+    config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<null> => {
+    return request({
+      url: `/payment/channel/queryList`,
+      method: "POST",
             ...config
     });
   },
@@ -2726,6 +2745,18 @@ export default {
     });
   },
   /**
+   * @description: VIP管理 - 查询vip信息下拉
+   */
+  VipManagementQueryAllPOST: (
+    config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<null> => {
+    return request({
+      url: `/vip/management/queryAll`,
+      method: "POST",
+            ...config
+    });
+  },
+  /**
    * @description: VIP管理 - 查询vip信息列表
    */
   VipManagementQueryListPOST: (
@@ -2950,7 +2981,7 @@ export default {
    * @description: 提币信息 - 审核通过
    */
   WithdrawDigitalCheckPassPOST: (
-    data: IWithdrawNoReq,
+    data: IWithdrawNoChannelTypeReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<null> => {
     return request({
@@ -2964,7 +2995,7 @@ export default {
    * @description: 提币信息 - 审核拒绝
    */
   WithdrawDigitalCheckRefusePOST: (
-    data: IWithdrawNoReq,
+    data: IWithdrawNoChannelTypeReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<null> => {
     return request({
@@ -3056,7 +3087,7 @@ export default {
     });
   },
   /**
-   * @description: 提币信息 - 提现成功
+   * @description: 提币信息 - 提现成功（仅线下转账方式）
    */
   WithdrawDigitalSuccessPOST: (
     data: IWithdrawNoReq,
@@ -3087,7 +3118,7 @@ export default {
    * @description: 提币信息 - 确认提现
    */
   WithdrawDigitalWithdrawConfirmPOST: (
-    data: IWithdrawNoReq,
+    data: IWithdrawNoChannelTypeReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<null> => {
     return request({

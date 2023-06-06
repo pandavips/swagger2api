@@ -1,14 +1,5 @@
 /* eslint-disable */
 // @ts-nocheck
-/**
- * 注意!
- * 该文件由 \src\api\swagger2api 下的脚本生成
- * 请勿手动修改，因为你手动添加的内容很容易就会被脚本覆盖
- * 如需修改请修改模板文件后执行 pnpm run gen:api
- * 
- * 受数据的限制，文档地址的json无法判断interface某些字段是否应该必填
- **/
-
 declare interface ICollectionAccountResp {
   //usdt-bsc
   bscUsdtAmount?: number;
@@ -568,9 +559,9 @@ declare interface IBankCardUpdateReq {
   receivingStart?: string;
   //状态：1 可用；0 不可用
   status: number;
-  //用户标签，多个用逗号隔开
+  //用户标签，多个用逗号隔开，为空表示全部
   userLabel?: string;
-  //vip等级，多个用逗号隔开
+  //vip等级，多个用逗号隔开，为空表示全部
   vipLevel?: string;
   }
 
@@ -657,6 +648,20 @@ declare interface IBankQueryResp {
   bankName?: string;
   //更新时间
   updateTime?: string;
+  }
+
+declare interface IChannelDepostWithdrawSummaryReq {
+  //结束日期
+  end?: string;
+  //开始日期
+  start?: string;
+  }
+
+declare interface IChannelDepostWithdrawSummaryResp {
+  //总存款
+  depositAmount?: number;
+  //总提款
+  withdrawAmount?: number;
   }
 
 declare interface IAddArticleReq {
@@ -1037,6 +1042,8 @@ declare interface IDepositQueryResp {
   amount?: number;
   //链
   chain?: string;
+  //渠道类型
+  channelType?: string;
   //到账时间
   createTime?: string;
   //币种代码
@@ -1699,8 +1706,6 @@ declare interface IUpdateAchievingConditionsReq {
   subordinateMembers?: number;
   //周期总有效会员数
   totalMembers?: number;
-  //周期内有效流水
-  validAmount?: number;
   //周期内存款值
   validDepositAmount?: number;
   //周期内负盈利值
@@ -1925,10 +1930,6 @@ declare interface IUpdateValidMembersReq {
   }
 
 declare interface IQueryPaymentChannelReq {
-  //页码 从1开始计数
-  pageIndex?: number;
-  //页容 区间[1, 1000]
-  pageSize?: number;
   //状态 1:启用 0:禁用
   status?: number;
   }
@@ -1959,10 +1960,12 @@ declare interface IPaymentChannelResq {
   }
 
 declare interface IPaymentChannelReq {
-  //编号
-  bizNo: string;
+  //渠道类型
+  channelType: string;
   //币种代码
   currencyCode: string;
+  //其它扩展条件等
+  ext?: string;
   //商户key
   merchantKey: string;
   //商户号
@@ -1985,6 +1988,8 @@ declare interface IXinZengFanShuiFangAnMingXi {
   }
 
 declare interface IXinZengFanShuiFangAnQingQiu {
+  //计算方式：1阶梯式，2平铺式
+  calculationMethod?: number;
   //明细
   items: IXinZengFanShuiFangAnMingXi[];
   //方案名称
@@ -2144,10 +2149,16 @@ declare interface IProxyRebateRecordResp {
   id?: number;
   //周期
   period?: string;
+  //方案名称
+  planName?: string;
   //返水金额
   rebateAmount?: number;
+  //方案id
+  rebateItemId?: number;
   //状态：0待发放，1已发放，2已拒绝
   status?: number;
+  //状态：0待发放，1已发放，2已拒绝
+  statusName?: string;
   //更新时间
   updateTime?: string;
   //用户id
@@ -2496,9 +2507,9 @@ declare interface IThirdPayUpdateReq {
   receivingStart?: string;
   //状态 1:可用 0:不可用
   status?: string;
-  //用户标签，多个用逗号隔开
+  //用户标签，多个用逗号隔开，为空表示全部
   userLabel?: string;
-  //vip等级，多个用逗号隔开
+  //vip等级，多个用逗号隔开，为空表示全部
   vipLevel?: string;
   }
 
@@ -3396,9 +3407,9 @@ declare interface ICaiJinGuiZePeiZhiCanShuDuiXiang {
   type?: string;
   }
 
-declare interface IWithdrawNoReq {
+declare interface IWithdrawNoChannelTypeReq {
   //通道类型
-  channelType: number;
+  channelType?: string;
   //提币/提现单号
   withdrawNo: string;
   }
@@ -3424,6 +3435,13 @@ declare interface IWithdrawDigitalExportExcelGETReqQuery {
   start?: string;
   //交易时间结束
   end?: string;
+  }
+
+declare interface IWithdrawNoReq {
+  //通道类型
+  channelType?: string;
+  //提币/提现单号
+  withdrawNo: string;
   }
 
 declare interface IWithdrawReq {
@@ -3460,6 +3478,8 @@ declare interface IWithdrawResp {
   amount?: number;
   //链
   chain?: string;
+  //渠道类型
+  channelType?: string;
   //交易完成时间
   completeTime?: string;
   //下单时间

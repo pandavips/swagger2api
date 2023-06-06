@@ -1,18 +1,4 @@
-# 目前公司内部用的自动转api工具
-
-## 安装
-
-```shell
-npm i swagger2apis -D
-pnpm i swagger2apis -D
-```
-
-## 配置
-
-在你项目里生成一个
-
-```js
-import wantedApi, { getCurrentDirName } from 'swagger2apis';
+import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
 import { join } from 'path'
 
 wantedApi([
@@ -37,6 +23,4 @@ wantedApi([
   }
 ])
 
-```
 
-## 使用

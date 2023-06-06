@@ -3,16 +3,17 @@ import {
   fetchData,
   firstUpperCase,
   chineseCharacter2pinyin,
+  compileTs,
 } from "./utils";
 import fs from "fs";
-import path from "path";
+import path, { join } from "path";
 import { render } from "eta";
 import { mkdirp } from "mkdirp";
 
 import type { Config } from "./types";
 
 const genApi = async (config: Config) => {
-  const { url, outDir, templatePath } = config;
+  const { url, outDir, templatePath, apiUrlPrefix, needJS = false } = config;
   const rawData = (await fetchData(url)).data;
 
   const BaseArrayType = "baseArrayType";
@@ -68,7 +69,7 @@ const genApi = async (config: Config) => {
         };
 
         result.push({
-          path: "/" + path.split("/").slice(2).join("/"),
+          path: path.replace(apiUrlPrefix, ""),
           method: method.toUpperCase(),
           summary,
           tags,
@@ -324,7 +325,7 @@ const genApi = async (config: Config) => {
 
   const wiriteFile = async (url: string, filename: string, data: string) => {
     await mkdirp(url);
-    fs.writeFileSync(path.resolve(url, filename), data);
+    fs.writeFileSync(path.join(url, filename), data);
   };
 
   // 处理数据
@@ -334,32 +335,28 @@ const genApi = async (config: Config) => {
   const apiTemplateStr = fs.readFileSync(templatePath.api, "utf-8");
   const interfaceTemplateStr = fs.readFileSync(templatePath.interface, "utf-8");
 
-  const apisStr = render(apiTemplateStr, { apis: apiDataTransformed }, {});
-
-  const interfaceStr = render(interfaceTemplateStr, { interfaces }, {});
+  const apisStr = render(apiTemplateStr, { apis: apiDataTransformed });
+  const interfaceStr = render(interfaceTemplateStr, { interfaces });
 
   await wiriteFile(outDir, "./apis.ts", apisStr);
-  await wiriteFile(outDir, "./interfaces.ts", interfaceStr);
+  await wiriteFile(outDir, "./interfaces.d.ts", interfaceStr);
+
+  // 是否要转js文件
+  needJS && compileTs(join(outDir, "./apis.ts"));
 };
+
+export * from "./utils";
 
 export default async (config: Config | Config[]) => {
   const isMultiple = Array.isArray(config);
   console.log("开始生成api...");
   if (isMultiple) {
-    const urls: string[] = [];
     for (const c of config) {
-      urls.push(c.outDir);
       await genApi(c);
     }
-
-    // fs.writeFileSync(
-    //   path.resolve(urls[0], "../", "./index.ts"),
-    //   `
-    //   import { ${urls.map((url) => `api as ${url}`).join(",")} } from "./apis"
-    //   `
-    // );
   } else {
     await genApi(config);
   }
+
   console.log("完成工作,enjoy it!");
 };
