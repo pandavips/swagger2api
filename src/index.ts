@@ -68,8 +68,9 @@ const genApi = async (config: Config) => {
           schema: schemaName2json(responseBody.schema),
         };
 
+        const finalPath = path.slice(apiUrlPrefix.length);
         result.push({
-          path: path.replace(apiUrlPrefix, ""),
+          path: finalPath,
           method: method.toUpperCase(),
           summary,
           tags,
