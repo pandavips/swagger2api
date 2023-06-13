@@ -1,3 +1,6 @@
+/**
+  * 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
+  */
 var __assign = (this && this.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -356,6 +359,13 @@ export default {
     CurrencyEnablePOST: function (config) {
         if (config === void 0) { config = {}; }
         return request(__assign({ url: "/currency/enable", method: "POST" }, config));
+    },
+    /**
+     * @description: 系统币种 - 基础币种
+     */
+    CurrencyGetPOST: function (config) {
+        if (config === void 0) { config = {}; }
+        return request(__assign({ url: "/currency/get", method: "POST" }, config));
     },
     /**
      * @description: 币种管理 - 查询
@@ -883,28 +893,28 @@ export default {
         return request(__assign({ url: "/operate/config/gameScale/updateGameScale", method: "POST", data: data }, config));
     },
     /**
-     * @description: user-ip-access-control-controller - 添加
+     * @description: ip访问限制 - 添加
      */
     OperateConfigIpControlAddPOST: function (data, config) {
         if (config === void 0) { config = {}; }
         return request(__assign({ url: "/operate/config/ipControl/add", method: "POST", data: data }, config));
     },
     /**
-     * @description: user-ip-access-control-controller - 删除
+     * @description: ip访问限制 - 删除
      */
     OperateConfigIpControlDelByCodeIdPOST: function (id, config) {
         if (config === void 0) { config = {}; }
         return request(__assign({ url: "/operate/config/ipControl/del/".concat(id), method: "POST" }, config));
     },
     /**
-     * @description: user-ip-access-control-controller - 规则列表
+     * @description: ip访问限制 - 规则列表
      */
     OperateConfigIpControlListPOST: function (data, config) {
         if (config === void 0) { config = {}; }
         return request(__assign({ url: "/operate/config/ipControl/list", method: "POST", data: data }, config));
     },
     /**
-     * @description: user-ip-access-control-controller - 获取地区基础配置
+     * @description: ip访问限制 - 获取地区基础配置
      */
     OperateConfigIpControlRegionListPOST: function (config) {
         if (config === void 0) { config = {}; }
@@ -976,9 +986,9 @@ export default {
     /**
      * @description: 支付渠道管理 - 查询支付渠道列表（boss分配给包网商的）
      */
-    PaymentChannelQueryListPOST: function (config) {
+    PaymentChannelQueryListPOST: function (data, config) {
         if (config === void 0) { config = {}; }
-        return request(__assign({ url: "/payment/channel/queryList", method: "POST" }, config));
+        return request(__assign({ url: "/payment/channel/queryList", method: "POST", data: data }, config));
     },
     /**
      * @description: 返水方案管理 - 新增方案
@@ -1364,6 +1374,13 @@ export default {
     UserReminderUpdatePOST: function (data, config) {
         if (config === void 0) { config = {}; }
         return request(__assign({ url: "/user/reminder/update", method: "POST", data: data }, config));
+    },
+    /**
+     * @description: 用户管理 - 解锁密码错误限制
+     */
+    UserRemoveUserPwdErrCountPOST: function (data, config) {
+        if (config === void 0) { config = {}; }
+        return request(__assign({ url: "/user/removeUserPwdErrCount", method: "POST", data: data }, config));
     },
     /**
      * @description: 用户管理 - 重置手机号

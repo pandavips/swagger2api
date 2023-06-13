@@ -3,7 +3,6 @@ import * as axios from 'axios';
 interface Config {
     url: string;
     outDir: string;
-    outType: "ts" | "js";
     apiUrlPrefix: string;
     needJS: boolean;
     templatePath: {

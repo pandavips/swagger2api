@@ -1,11 +1,11 @@
 import ts from "typescript";
 import fs from "fs";
-import { join } from "path";
+import { join, sep } from "path";
 
 // 编译ts到js
 export const compileTs = (filePath) => {
-  const fileDir = filePath.split("\\").slice(0, -1).join("\\");
-  const fileName = filePath.split("\\").slice(-1)[0];
+  const fileDir = filePath.split(sep).slice(0, -1).join(sep);
+  const fileName = filePath.split(sep).slice(-1)[0];
   const fileNameNoExt = fileName.split(".")[0];
 
   const tsFile = fs.readFileSync(filePath, "utf8");

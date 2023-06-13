@@ -1,6 +1,6 @@
 {
   "name": "swagger2apis",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "swagger转api工具",
   "packageManager": "pnpm@7.1.0",
   "type": "module",

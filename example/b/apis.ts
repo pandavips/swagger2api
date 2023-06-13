@@ -1,3 +1,7 @@
+/**
+  * 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
+  */
+
 /* eslint-disable */
 // @ts-nocheck
 import request,{ExtraInInternalAxiosRequestConfig} from "./index";
@@ -669,6 +673,18 @@ export default {
   ): Promise<null> => {
     return request({
       url: `/currency/enable`,
+      method: "POST",
+            ...config
+    });
+  },
+  /**
+   * @description: 系统币种 - 基础币种
+   */
+  CurrencyGetPOST: (
+    config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<null> => {
+    return request({
+      url: `/currency/get`,
       method: "POST",
             ...config
     });
@@ -1686,7 +1702,7 @@ export default {
     });
   },
   /**
-   * @description: user-ip-access-control-controller - 添加
+   * @description: ip访问限制 - 添加
    */
   OperateConfigIpControlAddPOST: (
     data: IIpGuiZeTianJiaCanShu,
@@ -1700,7 +1716,7 @@ export default {
     });
   },
   /**
-   * @description: user-ip-access-control-controller - 删除
+   * @description: ip访问限制 - 删除
    */
   OperateConfigIpControlDelByCodeIdPOST: (
     id:string,
@@ -1713,7 +1729,7 @@ export default {
     });
   },
   /**
-   * @description: user-ip-access-control-controller - 规则列表
+   * @description: ip访问限制 - 规则列表
    */
   OperateConfigIpControlListPOST: (
     data: IFangWenKongZhiLieBiaoCanShu,
@@ -1727,7 +1743,7 @@ export default {
     });
   },
   /**
-   * @description: user-ip-access-control-controller - 获取地区基础配置
+   * @description: ip访问限制 - 获取地区基础配置
    */
   OperateConfigIpControlRegionListPOST: (
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
@@ -1864,11 +1880,13 @@ export default {
    * @description: 支付渠道管理 - 查询支付渠道列表（boss分配给包网商的）
    */
   PaymentChannelQueryListPOST: (
+    data: IQueryPaymentChannelReq,
     config:Partial<ExtraInInternalAxiosRequestConfig>={}
   ): Promise<null> => {
     return request({
       url: `/payment/channel/queryList`,
       method: "POST",
+            data: data,
             ...config
     });
   },
@@ -2618,6 +2636,20 @@ export default {
   ): Promise<null> => {
     return request({
       url: `/user/reminder/update`,
+      method: "POST",
+            data: data,
+            ...config
+    });
+  },
+  /**
+   * @description: 用户管理 - 解锁密码错误限制
+   */
+  UserRemoveUserPwdErrCountPOST: (
+    data: IJieSuoMiMaCuoWuXianZhiCanShuDuiXiang,
+    config:Partial<ExtraInInternalAxiosRequestConfig>={}
+  ): Promise<null> => {
+    return request({
+      url: `/user/removeUserPwdErrCount`,
       method: "POST",
             data: data,
             ...config
