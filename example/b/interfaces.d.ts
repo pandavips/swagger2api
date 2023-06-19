@@ -399,6 +399,8 @@ declare interface IAssetChangeLogResp {
   currency?: string;
   //方向 in:入金 out:出金
   direct?: string;
+  //流水倍数
+  multiple?: number;
   //所属包网商
   proxyName?: string;
   //所属包网商id
@@ -843,6 +845,73 @@ declare interface IPrivateKeyReq {
   privateKey: string;
   }
 
+declare interface ICommonLogOperateExportExcelGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户编号
+  userId?: number;
+  //用户账号
+  userAccount?: string;
+  //系统模块
+  operationBiz?: string;
+  //操作类型
+  operationType?: string;
+  //操作内容
+  remark?: string;
+  //开始时间
+  start?: string;
+  //结束时间
+  end?: string;
+  }
+
+declare interface IOperationLogReq {
+  //结束时间
+  end?: string;
+  //系统模块
+  operationBiz?: string;
+  //操作类型
+  operationType?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //操作内容
+  remark?: string;
+  //开始时间
+  start?: string;
+  //用户账号
+  userAccount?: string;
+  //用户编号
+  userId?: number;
+  }
+
+declare interface IOperationLogVo {
+  //日志编号
+  id?: number;
+  //操作业务
+  operationBiz?: string;
+  //操作时间
+  operationTime?: string;
+  //操作类型
+  operationType?: string;
+  //操作说明
+  remark?: string;
+  //操作人编号
+  userId?: string;
+  //操作人姓名
+  userName?: string;
+  }
+
+declare interface IPageResultOperationLogVo {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IOperationLogVo[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
 declare interface ICurrencyQueryReq {
   //结束时间
   end?: string;
@@ -946,6 +1015,13 @@ declare interface IWithdrawCallbackReq {
 declare interface IDepositNoReq {
   //充值单号
   depositNo: string;
+  }
+
+declare interface IDepositRefuseReq {
+  //充值单号
+  depositNo: string;
+  //拒绝理由
+  refuseDesc?: string;
   }
 
 declare interface IWithdrawInfoResp {
@@ -1082,6 +1158,8 @@ declare interface IDepositQueryResp {
   proxyUserId?: number;
   //汇率
   rate?: number;
+  //拒绝理由
+  refuseDesc?: string;
   //备注
   reminder?: string;
   //状态:0:待审核 1:审核通过 2:审核拒绝
@@ -1318,6 +1396,9 @@ declare interface IFileDownloadByCodeFileNoPOSTReqQuery {
   type?: number;
   }
 
+declare interface IFileUploadPOSTFromData {
+  }
+
 declare interface IUploadResultResp {
   //文件名称
   fileName?: string;
@@ -1446,6 +1527,747 @@ declare interface IPageResultProxyGameResp {
   rows?: IProxyGameResp[];
   totalNum?: number;
   totalPages?: number;
+  }
+
+declare interface IChessCardGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //用户Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface IChessCardGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //局号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //抽水
+  revenue?: number;
+  //投注时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //投注额
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultChessCardGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IChessCardGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordChesscardExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IGameRecordChickenPOSTReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IChickenGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //局号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //结束时间
+  endTime?: number;
+  //游戏账户
+  gameAccount?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //投注额
+  totalBet?: number;
+  //用户Id
+  userId?: number;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultChickenGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IChickenGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordChickenExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IElectronGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //用户Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface IElectronGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //投注时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //投注额
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultElectronGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IElectronGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordElectronExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IEsportGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //渠道Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface IEsportGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //比赛时间
+  competitionTime?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //单局总投注
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultEsportGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IEsportGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordEsportExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //渠道Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IFishGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //用户Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface IFishGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //局号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //单局总投注
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  //彩金
+  winningsAmount?: number;
+  }
+
+declare interface IPageResultFishGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IFishGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordFishExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface ILiveVideoGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //用户Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface ILiveVideoGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //局号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //厂商Code
+  factoryCode?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //投注时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //投注额
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultLiveVideoGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: ILiveVideoGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordLivevideoExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface ILotteryGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //渠道Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface ILotteryGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //副单号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //结束时间
+  endTime?: number;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //单局总投注
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  //开奖号码
+  winningNo?: string;
+  }
+
+declare interface IPageResultLotteryGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: ILotteryGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordLotteryExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //渠道Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  }
+
+declare interface IOrdinaryGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //渠道Id
+  channelId?: string;
+  //厂商
+  factoryCode?: string;
+  //游戏主类型
+  gameMainType?: string;
+  //游戏类型
+  gameType?: number;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //游戏结果
+  resultFlag?: number;
+  //状态
+  status?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface IOrdinaryGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //局号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //结束时间
+  endTime?: number;
+  //厂商Code
+  factoryCode?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏Code
+  gameCode?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //单局总投注
+  totalBet?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultOrdinaryGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IOrdinaryGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordOrdinaryExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //渠道Id
+  channelId?: string;
+  //厂商
+  factoryCode?: string;
+  //游戏类型
+  gameType?: number;
+  //游戏结果
+  resultFlag?: number;
+  //状态
+  status?: number;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
+  //游戏主类型
+  gameMainType?: string;
+  }
+
+declare interface ISportGameRecordReq {
+  //注单时间-结束
+  betEndTime?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //用户Id
+  channelId?: string;
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
+declare interface ISportGameRecordResp {
+  //上级代理
+  agentAccount?: string;
+  //副单号
+  bureauId?: string;
+  //渠道Id
+  channelId?: string;
+  //渠道名称
+  channelName?: string;
+  //结束时间
+  endTime?: number;
+  //详情
+  extendInfo?: string;
+  //游戏账户
+  gameAccount?: string;
+  //游戏名称
+  gameName?: string;
+  //游戏类型id
+  gameType?: number;
+  //游戏类型名称
+  gameTypeName?: string;
+  //输赢金额
+  result?: number;
+  //游戏结果
+  resultFlagName?: string;
+  //开始时间
+  startTime?: number;
+  //结算状态
+  statusName?: string;
+  //单局总投注
+  totalBet?: number;
+  //注单流水号
+  transactionId?: string;
+  //用户Id
+  userId?: number;
+  //用户名
+  userName?: string;
+  //有效投注
+  validBet?: number;
+  }
+
+declare interface IPageResultSportGameRecordResp {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: ISportGameRecordResp[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IGameRecordSportExportGETReqQuery {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //用户名
+  userName?: string;
+  //用户Id
+  userId?: number;
+  //用户Id
+  channelId?: string;
+  //注单时间-开始
+  betStartTime?: string;
+  //注单时间-结束
+  betEndTime?: string;
   }
 
 declare interface IGameStatisticsChannelExportExcelGETReqQuery {
@@ -1579,6 +2401,13 @@ declare interface ISummaryReq {
   end?: string;
   //开始日期
   start?: string;
+  }
+
+declare interface IGameMainTypeResp {
+  //类型编号
+  gameMainTypeCode?: string;
+  //厂商编码
+  gameMainTypeName?: string;
   }
 
 declare interface IProxyGameUpdateAreaReq {
@@ -1742,6 +2571,10 @@ declare interface IProxyRelationConfigResp {
   proxyId?: number;
   //ip注册数量限制
   registerAmountLimit?: number;
+  //用户绑定银行卡数量限制
+  userBankCardAmount?: number;
+  //会员关联账号
+  userRelationAccount?: string;
   }
 
 declare interface IUpdateCommissionMultipleReq {
@@ -1767,6 +2600,16 @@ declare interface IUpdateMinimumBalanceReq {
 declare interface IZhuCeShuLiangXianZhi {
   //最大注册数
   amount?: number;
+  }
+
+declare interface IXiuGaiYongHuYinHangKaBangDingShuLiang {
+  //最大数量
+  amount?: number;
+  }
+
+declare interface IHuiYuanGuanLianZhangHao {
+  //会员关联账号
+  userRelationAccount?: string;
   }
 
 declare interface IProxyGameScaleResp {
@@ -2424,10 +3267,14 @@ declare interface ISettleProxyExportExcelGETReqQuery {
 declare interface IAdjustmentReq {
   //金额
   amount: number;
+  //红包备注
+  remark?: string;
   //类型：0：减少余额，1：增加余额，2：发红包
   type: number;
   //用户id
   userId: number;
+  //提现流水倍数
+  withdrawFactor?: number;
   }
 
 declare interface IProxySumResp {
@@ -2450,6 +3297,8 @@ declare interface ISystemDepositWithdrawBo {
   id?: number;
   //包网商id
   proxyId?: number;
+  //备注
+  remark?: string;
   //用户id
   userId?: number;
   }
@@ -2482,6 +3331,204 @@ declare interface IProxySummerResp {
   proxyId?: number;
   }
 
+declare interface IMenuBaseVo {
+  //展开状态(1:展开;0:收缩) 
+  expanded?: string;
+  //节点图标
+  icon?: string;
+  //节点图标CSS类名
+  iconCls?: string;
+  //菜单编码，可作为按钮的显隐
+  menuCode?: string;
+  //菜单级别(0:树枝节点;1:叶子节点;2:按钮级别)
+  menuLevel?: string;
+  //菜单名称(最长50)
+  menuName?: string;
+  //菜单类型(1:系统菜单;0:业务菜单)
+  menuType?: string;
+  //上级菜单编号
+  parentId?: string;
+  //备注(最长200)
+  remark?: string;
+  //请求地址(最长200)
+  request?: string;
+  //排序号
+  sortNo?: number;
+  }
+
+declare interface ISystemMenuDeleteGETReqQuery {
+  //菜单编号
+  menuId?: string;
+  }
+
+declare interface ISystemMenuDeletePOSTReqQuery {
+  //菜单编号
+  menuId?: string;
+  }
+
+declare interface IMenuResponseVo {
+  //展开状态(1:展开;0:收缩) 
+  expanded?: string;
+  //节点图标
+  icon?: string;
+  //节点图标CSS类名
+  iconCls?: string;
+  //菜单编码，可作为按钮的显隐
+  menuCode?: string;
+  //菜单编号
+  menuId?: string;
+  //菜单级别(0:树枝节点;1:叶子节点;2:按钮级别)
+  menuLevel?: string;
+  //菜单名称(最长50)
+  menuName?: string;
+  //菜单类型(1:系统菜单;0:业务菜单)
+  menuType?: string;
+  //上级菜单编号
+  parentId?: string;
+  //备注(最长200)
+  remark?: string;
+  //请求地址(最长200)
+  request?: string;
+  //排序号
+  sortNo?: number;
+  }
+
+declare interface IMenuUpdateVo {
+  //展开状态(1:展开;0:收缩) 
+  expanded?: string;
+  //节点图标
+  icon?: string;
+  //节点图标CSS类名
+  iconCls?: string;
+  //菜单编码，可作为按钮的显隐
+  menuCode?: string;
+  //菜单编号
+  menuId?: string;
+  //菜单级别(0:树枝节点;1:叶子节点;2:按钮级别)
+  menuLevel?: string;
+  //菜单名称(最长50)
+  menuName?: string;
+  //菜单类型(1:系统菜单;0:业务菜单)
+  menuType?: string;
+  //上级菜单编号
+  parentId?: string;
+  //备注(最长200)
+  remark?: string;
+  //请求地址(最长200)
+  request?: string;
+  //排序号
+  sortNo?: number;
+  }
+
+declare interface IRoleBaseVo {
+  //备注(最长50)
+  remark?: string;
+  //角色名称(最长50)
+  roleName?: string;
+  //角色类型(1:业务角色;2:管理角色)
+  roleType?: string;
+  }
+
+declare interface IRoleMenuRequestVo {
+  //菜单编号集合
+  menuIds?: string[];
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface IRoleLockRequestVo {
+  //锁定标志 1:锁定;0:激活
+  lockFlag?: string;
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface ISystemRoleDeleteGETReqQuery {
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface ISystemRoleDeletePOSTReqQuery {
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface IJiaoSeXiangYingXinXi {
+  //创建时间
+  createTime?: string;
+  //锁定标志 1锁定 0激活
+  locked?: string;
+  //备注(最长50)
+  remark?: string;
+  //角色编号
+  roleId?: string;
+  //角色名称(最长50)
+  roleName?: string;
+  //角色类型(1:业务角色;2:管理角色)
+  roleType?: string;
+  //修改时间
+  updateTime?: string;
+  }
+
+declare interface ISystemRoleQueryByIdGETReqQuery {
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface ISystemRoleQueryDetailGETReqQuery {
+  //角色编号
+  roleId?: string;
+  }
+
+declare interface IRoleMenuResponseVo {
+  //创建时间
+  createTime?: string;
+  //锁定标志 1锁定 0激活
+  locked?: string;
+  //权限信息
+  menus?: IMenuResponseVo[];
+  //备注(最长50)
+  remark?: string;
+  //角色编号
+  roleId?: string;
+  //角色名称(最长50)
+  roleName?: string;
+  //角色类型(1:业务角色;2:管理角色)
+  roleType?: string;
+  //修改时间
+  updateTime?: string;
+  }
+
+declare interface IRoleQueryRequestVo {
+  //页码 从1开始计数
+  pageIndex?: number;
+  //页容 区间[1, 1000]
+  pageSize?: number;
+  //角色描述
+  remark?: string;
+  //角色名称
+  roleName?: string;
+  }
+
+declare interface IPageResultJiaoSeXiangYingXinXi {
+  pageIndex?: number;
+  pageSize?: number;
+  rows?: IJiaoSeXiangYingXinXi[];
+  totalNum?: number;
+  totalPages?: number;
+  }
+
+declare interface IRoleUpdateVo {
+  //备注(最长50)
+  remark?: string;
+  //角色编号
+  roleId?: string;
+  //角色名称(最长50)
+  roleName?: string;
+  //角色类型(1:业务角色;2:管理角色)
+  roleType?: string;
+  }
+
 declare interface IProxyBaseUpdateReq {
   //logo编号
   logo: string;
@@ -2497,6 +3544,18 @@ declare interface IUserPasswordRequestProxyVo {
   notSame?: boolean;
   //原密码
   oldPassword?: string;
+  }
+
+declare interface ISystemUserGetRoleGETReqQuery {
+  //用户编号
+  userId?: string;
+  }
+
+declare interface IUserRoleMenuVo {
+  //菜单信息
+  menus?: IMenuResponseVo[];
+  //角色信息
+  roles?: IJiaoSeXiangYingXinXi[];
   }
 
 declare interface IThirdPayUpdateReq {
@@ -2675,6 +3734,13 @@ declare interface IAddChildReq {
   status: number;
   }
 
+declare interface IUserRoleRequestVo {
+  //角色编号集合
+  roleIds?: string[];
+  //用户编号
+  userId?: string;
+  }
+
 declare interface IProxyChildResp {
   //账号
   account?: string;
@@ -2700,18 +3766,18 @@ declare interface IPageResultProxyChildResp {
   totalPages?: number;
   }
 
-declare interface IUpdateChildRoleReq {
-  //角色
-  role: string;
-  //用户编号
-  userId: number;
-  }
-
 declare interface IUpdateUserStatusReq {
   //状态变更原因
   remark?: string;
   //用户编号
   userId: number;
+  }
+
+declare interface IXiuGaiYongHuFengJinZhuangTai {
+  //封锁：true，解封：false
+  forbidden?: boolean;
+  //用户id
+  userId?: number;
   }
 
 declare interface IUserGameExportExcelGETReqQuery {
@@ -2837,6 +3903,19 @@ declare interface IUserLabelUpdate {
   userId: number;
   }
 
+declare interface IUserRelationAccountResp {
+  //关联类型code
+  relationTypeCode?: string;
+  //关联类型名字
+  relationTypeName?: string;
+  //关联value
+  relationValue?: string;
+  //用户id
+  userId?: number;
+  //用户名
+  userName?: string;
+  }
+
 declare interface IChannelAccountResp {
   //余额
   balance?: number;
@@ -2860,8 +3939,12 @@ declare interface IUserDataSummary {
   channelBalance?: number;
   //充值累计
   deposit?: number;
+  //充值提现流水倍数
+  depositWithdrawFactor?: number;
   //有效流水
   effectiveBet?: number;
+  //红包提现流水倍数
+  redBagWithdrawFactor?: number;
   //剩余需要的有效流水
   remainNeedAmount?: number;
   //负盈利
@@ -2893,6 +3976,8 @@ declare interface IUserDetailResp {
   email?: string;
   //经验值
   experience?: number;
+  //封禁用户，true：封禁
+  forbidden?: boolean;
   //邀请人账号(所属代理)
   inviteAccount?: string;
   //邀请人编号
@@ -2948,12 +4033,16 @@ declare interface IQueryUserListReq {
   agentUid?: number;
   //注册时间结束
   end?: string;
+  //最后一次登陆ip
+  lastLoginIp?: string;
   //手机号
   mobileNo?: string;
   //页码 从1开始计数
   pageIndex?: number;
   //页容 区间[1, 1000]
   pageSize?: number;
+  //注册ip
+  registerIp?: string;
   //注册时间开始
   start?: string;
   //用户编号
@@ -2964,6 +4053,8 @@ declare interface IQueryUserListReq {
   userName?: string;
   //用户类型 1:普通 4:代理用户
   userType?: number;
+  //vip等级
+  vipLevel?: number;
   }
 
 declare interface IUserResp {
@@ -2979,6 +4070,8 @@ declare interface IUserResp {
   email?: string;
   //经验值
   experience?: number;
+  //封禁用户，true：封禁
+  forbidden?: boolean;
   //邀请人账号(所属代理)
   inviteAccount?: string;
   //邀请人编号
@@ -3279,6 +4372,8 @@ declare interface IBaoWangShangChaXunYongHuCaiJinJiLuCanShuDuiXiang {
   pageSize?: number;
   //到账时间
   start?: string;
+  //状态
+  statusList?: number[];
   //用户id
   userId?: number;
   }
@@ -3288,6 +4383,8 @@ declare interface IYongHuCaiJinFaFangJiLu {
   agentName?: string;
   //代理商id
   agentUid?: number;
+  //说明(原因)
+  explainReview?: string;
   id?: number;
   //归属包网商
   proxyName?: string;
@@ -3297,6 +4394,8 @@ declare interface IYongHuCaiJinFaFangJiLu {
   receivedTime?: string;
   //单号
   recordNo?: string;
+  //备注
+  remark?: string;
   //状态：1有效，0无效
   status?: number;
   //来源类型
@@ -3320,13 +4419,30 @@ declare interface IPageResultYongHuCaiJinFaFangJiLu {
   totalPages?: number;
   }
 
+declare interface IReviewUserWinningsRecordProxyReq {
+  //代理id
+  agentUid: number;
+  //说明(原因)
+  explainReview?: string;
+  //状态(1:通过；2:拒绝)
+  status: number;
+  //用户id
+  userId: number;
+  }
+
 declare interface ICaiJinTongJiShuJuBossZhiDuiXiang {
+  //审核拒绝金额
+  refuseAmount?: number;
   //注册彩金总发放数
   registerAmount?: number;
   //签到彩金总发放数
   signInAmount?: number;
+  //红包发放数量
+  systemAllocateAmount?: number;
   //彩金总发放数
   totalAmount?: number;
+  //待审核金额
+  unreviewAmount?: number;
   }
 
 declare interface ICaiJinPeiZhiChaXunDuiXiang {
@@ -3387,6 +4503,10 @@ declare interface ICaiJinGuiZePeiZhiXinXi {
   //首次存款规则，对应配置类型：FIRST_DEPOSIT
   firstDepositRule?: IShouChongLeiXingGuiZe;
   id?: number;
+  //是否需要审核：1 是；0 否；红包传0
+  needReview?: number;
+  //关联帐号是否只参加一次：1 是；0 否；红包传0
+  oneAssAccountOneTime?: number;
   //包网商id
   proxyUid?: number;
   //注册规则，对应配置类型：REGISTER
@@ -3415,6 +4535,10 @@ declare interface ICaiJinGuiZePeiZhiCanShuDuiXiang {
   firstDepositRule?: IShouChongLeiXingGuiZe;
   //主键，新增是为空
   id?: number;
+  //是否需要审核：1 是；0 否；红包传0
+  needReview?: number;
+  //关联帐号是否只参加一次：1 是；0 否；红包传0
+  oneAssAccountOneTime?: number;
   //包网商id
   proxyUid?: number;
   //注册规则，对应配置类型：REGISTER
@@ -3430,6 +4554,15 @@ declare interface ICaiJinGuiZePeiZhiCanShuDuiXiang {
 declare interface IWithdrawNoChannelTypeReq {
   //通道类型
   channelType?: string;
+  //提币/提现单号
+  withdrawNo: string;
+  }
+
+declare interface IWithdrawRefuseReq {
+  //通道类型
+  channelType?: string;
+  //拒绝理由
+  refuseDesc?: string;
   //提币/提现单号
   withdrawNo: string;
   }
@@ -3455,13 +4588,6 @@ declare interface IWithdrawDigitalExportExcelGETReqQuery {
   start?: string;
   //交易时间结束
   end?: string;
-  }
-
-declare interface IWithdrawNoReq {
-  //通道类型
-  channelType?: string;
-  //提币/提现单号
-  withdrawNo: string;
   }
 
 declare interface IWithdrawReq {
@@ -3527,6 +4653,8 @@ declare interface IWithdrawResp {
   proxyUserId?: number;
   //汇率
   rate?: number;
+  //拒绝理由
+  refuseDesc?: string;
   //备注
   reminder?: string;
   //状态 0:待审核 1:审核通过 2:审核拒绝 3:提币中 4: 提现失败 8:提现/币成功 9:提币失败
@@ -3561,6 +4689,13 @@ declare interface IPageResultWithdrawResp {
   rows?: IWithdrawResp[];
   totalNum?: number;
   totalPages?: number;
+  }
+
+declare interface IWithdrawNoReq {
+  //通道类型
+  channelType?: string;
+  //提币/提现单号
+  withdrawNo: string;
   }
 
 declare interface IWithdrawSummaryResp {

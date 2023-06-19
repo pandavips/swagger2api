@@ -13,7 +13,14 @@ import { mkdirp } from "mkdirp";
 import type { Config } from "./types";
 
 const genApi = async (config: Config) => {
-  const { url, outDir, templatePath, apiUrlPrefix, needJS = false } = config;
+  const {
+    url,
+    outDir,
+    templatePath,
+    apiUrlPrefix,
+    needJS = false,
+    needGroup = true,
+  } = config;
   const rawData = (await fetchData(url)).data;
 
   const BaseArrayType = "baseArrayType";
@@ -228,6 +235,13 @@ const genApi = async (config: Config) => {
       const description = tags[0] + " - " + summary;
       const urlEndParamReg = /{(.*?)}/g;
       const matchResult: any = [];
+
+      // 分组信息
+      const group = {
+        name: tags[0] || "orphan",
+        prefix: path.split("/")[1] || "orphan",
+      };
+
       let r;
       while ((r = urlEndParamReg.exec(path)) !== null) {
         matchResult.push(r);
@@ -235,7 +249,7 @@ const genApi = async (config: Config) => {
 
       let url = "/" + path.split("/").slice(1).join("/");
 
-      // 是否是路径参数
+      // 是否是末尾路径参数
       const codeName = matchResult.map((r) => firstUpperCase(r[1])).join("");
       const isUrlEndParam = !!codeName;
 
@@ -264,6 +278,7 @@ const genApi = async (config: Config) => {
       const reqBody = (() => {
         // 一般情况下不会同时存在body和query参数
         const body = reqInfo.body[0]?.schema ?? null;
+        const formData = reqInfo.formData ?? null;
         const query = reqInfo.query ?? null;
 
         // 转换query参数为post参数
@@ -283,7 +298,18 @@ const genApi = async (config: Config) => {
           };
           // url处理
           hasQueryParams = true;
-          url = `${url}${isUrlEndParam ? "" : "?${qs.stringify(data)}"}`;
+          // url = `${url}${isUrlEndParam ? "" : "?${qs.stringify(data)}"}`;
+          return queryBody;
+        }
+        if (formData) {
+          const queryBody = {
+            title: apiName + "FromData",
+            type: "object",
+            properties: {},
+          };
+          // url处理
+          // hasQueryParams = true;
+          // url = `${url}${isUrlEndParam ? "" : "?${qs.stringify(data)}"}`;
           return queryBody;
         }
 
@@ -295,6 +321,7 @@ const genApi = async (config: Config) => {
         (reqBody.title === BaseArrayType
           ? reqBody.schemaType + "[]"
           : addInterface(reqBody) || null);
+
       const reqShemaType = hasReqBody && reqBody.schemaType;
       // 准备响应参数接口数据
       const resBody = resInfo?.schema || null;
@@ -306,6 +333,7 @@ const genApi = async (config: Config) => {
         isUrlEndParam,
         apiName,
         url,
+        group,
         params,
         method,
         description,
@@ -339,10 +367,43 @@ const genApi = async (config: Config) => {
   const apisStr = render(apiTemplateStr, { apis: apiDataTransformed });
   const interfaceStr = render(interfaceTemplateStr, { interfaces });
 
-  await wiriteFile(outDir, "./apis.ts", apisStr);
+  // 如果需要分组,则按照分组生成文件
+  if (needGroup) {
+    const groups = apiDataTransformed.reduce((acc, cur) => {
+      const { group } = cur;
+      const { prefix, name } = group;
+      acc[prefix] = acc[prefix] || [];
+      acc[prefix].push({ ...cur, prefix, name });
+      return acc;
+    }, {});
+
+    let indexStr = ``;
+
+    for (const key in groups) {
+      await wiriteFile(
+        path.join(outDir, "./modules/"),
+        `./${key}.ts`,
+        render(apiTemplateStr, { apis: groups[key] })
+      );
+      // 编译ts
+      needJS && compileTs(join(outDir, "./modules/", `./${key}.ts`));
+
+      indexStr += `// ${groups[key][0].group.name}\n`;
+      indexStr += `import * as ${key} from "./modules/${key}";\n`;
+    }
+    // 默认导出
+    indexStr += `export default{
+      ${Object.keys(groups).map((key) => `...${key}`)}
+    }`;
+
+    await wiriteFile(outDir, "/apis.ts", indexStr);
+  } else {
+    await wiriteFile(outDir, "./apis.ts", apisStr);
+  }
+
   await wiriteFile(outDir, "./interfaces.d.ts", interfaceStr);
 
-  // 是否要转js文件
+  // 是否要转js文件;
   needJS && compileTs(join(outDir, "./apis.ts"));
 };
 

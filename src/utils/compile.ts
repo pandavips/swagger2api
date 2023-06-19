@@ -1,4 +1,4 @@
-import ts from "typescript";
+import ts, { ScriptTarget } from "typescript";
 import fs from "fs";
 import { join, sep } from "path";
 
@@ -13,6 +13,7 @@ export const compileTs = (filePath) => {
   // 编译 TypeScript 文件
   const res = ts.transpileModule(tsFile, {
     compilerOptions: {
+      target: 9,
       module: ts.ModuleKind.ESNext,
     },
   });
