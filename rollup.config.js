@@ -34,19 +34,8 @@ export default [
           { src: 'src/static/template', dest: 'dist' },
           { src: 'src/static/request', dest: 'dist/request' }
         ]
-      })
+      }),
+      rollupTypescript({ outDir: "dist", declaration: true, declarationDir: "dist", })
     ],
   },
-  {
-    // 生成 .d.ts 类型声明文件
-    input: "src/index.ts",
-    output: {
-      file: "./dist/index.d.ts",
-      format: "es",
-    },
-    plugins: [
-      dts(),
-    ],
-  },
-
 ];

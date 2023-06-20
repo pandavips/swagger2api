@@ -1,4 +1,4 @@
-# 目前公司内部用的自动转api工具
+# Swagger JSON 转Api定义的工具
 
 ## 安装
 
@@ -8,65 +8,88 @@ npm i swagger2apis -D
 pnpm i swagger2apis -D
 ```
 
-## 配置
-
-在你项目里api相关的目录里新建一个脚本文件,还需要提供两个模板文件,内容可以是下边的示例:
-
-```js
-import wantedApi, { getCurrentDirName } from 'swagger2apis';
-import { join } from 'path'
-
-wantedApi([
-  {
-    // json来源
-    url: 'http://10.200.100.14:8294/v2/api-docs?group=proxy',
-    // 输出目录
-    outDir: join(getCurrentDirName(import.meta.url), './a'),
-    // 公共路径前缀
-    apiUrlPrefix: '/proxy',
-    // 模板地址
-    templatePath: {
-      api: join(getCurrentDirName(import.meta.url), './apis.eta'),
-      interface: join(getCurrentDirName(import.meta.url), './interface.eta')
-    }
-  },
-  {
-    url: 'http://10.200.100.14:8294/v2/api-docs?group=proxy',
-    outDir: join(getCurrentDirName(import.meta.url), './b'),
-    apiUrlPrefix: '/proxy',
-    needJS: true,
-    templatePath: {
-      api: join(getCurrentDirName(import.meta.url), './apis.eta'),
-      interface: join(getCurrentDirName(import.meta.url), './interface.eta')
-    }
-  }
-])
-
-```
-
-模板文件在example文件夹下有提供示例
-[api生成模板]((https://github.com/pandavips/swagger2api/blob/main/example/apis.eta))
-
-[interface生成模板]((https://github.com/pandavips/swagger2api/blob/main/example/apis.eta))
-
 ## 使用
 
-### 自动挡
+在你的项目随意一个地方新建一个`*.mjs`文件,填充以下内容:
 
-在项目里package.json里添加脚本
+```js
+import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
+import { join } from 'path'
+
+wantedApi({
+  // json地址来源,目前仅支持远程采集,后续支持本地json
+  url: '[json来源](https://github.com/pandavips/swagger2api)',
+  // 定义文件输出目录目录
+  outDir: join(getCurrentDirName(import.meta.url), './api'),
+  // 公共路径前缀,最终输出会擦除掉这个前缀
+  apiUrlPrefix: '/proxy',
+  // 是否需要js
+  needJS: true,
+  // 是否需要结构化分组
+  needGroup:true,
+  // 模板文件地址,如果省略将使用自带模板,若有需要可以将模板放置到本地然后进行修改,然后采用本地模板
+  // templatePath:{
+    // api模板
+    // api:'xxx',
+    // interface模板
+    // dtx:'xxx'
+  // },
+  // axios实例引入路径,可省略;如果发现路径报错,请自行检查输出文件相对于axios实例文件的路径后调整此项(如果你使用的是本地模板,那么可以直接更改模板内容)
+  // axiosPath: '../request'
+})
+```
+
+在package.json里添加脚本
 
 ```json
 "scripts": {
-    ...,
-    // +
-    "gen:apis": "node ./src/api/swagger2api/index.mjs && prettier --write ./src/api/*"
-  },
+  // 使用node执行你刚刚新建的脚本文件,并借助prettier格式化输出文件
+  "gen:apis": "node xxx.mjs && prettier --write xxx/*"
+},
 ```
 
-### 手动挡
-
-手动使用node执行脚本文件,手动格式化
+最后一步执行脚本
 
 ```shell
-node ./src/api/swagger2api/index.mjs
+npm run gen:apis
 ```
+
+如果没有出意外,你将会看到类似的以下输出内容,这意味着你成功了,good luck~
+
+```shell
+开始生成api...
+完成工作,enjoy it!
+src\api\apis.js 73ms
+src\api\apis.ts 200ms
+src\api\genApis.mjs 10ms
+src\api\httpError.js 12ms
+src\api\interfaces.d.ts 613ms
+src\api\request.js 40ms
+```
+
+## 如果你的项目有多个不同JSON来源怎么办?
+
+注意到我们有时候会需要生成多个来源的接口定义,那么我们可以直接传入一个数组项的配置,看下方示例:
+
+```js
+import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
+import { join } from 'path'
+wantedApi([
+  {
+    url: '来源一',
+    outDir: join(getCurrentDirName(import.meta.url), './api/a'),
+    apiUrlPrefix: '/proxy',
+  },
+  {
+    url: '来源二',
+    outDir: join(getCurrentDirName(import.meta.url), './api/b'),
+    apiUrlPrefix: '/proxy',
+  }
+])
+```
+
+我们通常只需要更改`outDir`的输出路径来放置不同来源的输出文件,这样我们就可以很方便的生成了.
+
+## 模板文件哪里找?
+
+这里
