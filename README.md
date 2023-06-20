@@ -92,4 +92,5 @@ wantedApi([
 
 ## 模板文件哪里找?
 
-这里
+如果你已经在项目里安装,会在这个路径下找到模板文件
+`\node_modules\swagger2apis\dist\template`
