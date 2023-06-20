@@ -10,8 +10,10 @@ export interface Config {
   // 需要转译成js
   needJS: boolean;
   // 模板路径
-  templatePath: {
+  templatePath: any & {
     api: string;
-    interface: string;
+    dts: string;
   };
+  // axios实例位置
+  axiosPath: string;
 }

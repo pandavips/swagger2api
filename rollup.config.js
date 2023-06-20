@@ -2,7 +2,10 @@ import rollupTypescript from "@rollup/plugin-typescript";
 const { terser } = require("rollup-plugin-terser");
 import dts from "rollup-plugin-dts";
 import commonjs from '@rollup/plugin-commonjs';
-// rollup.config.js
+import json from '@rollup/plugin-json';
+// import nodeResolve from '@rollup/plugin-node-resolve';
+import copy from 'rollup-plugin-copy'
+
 export default [
   {
     // 核心选项
@@ -22,7 +25,17 @@ export default [
       commonjs({
         include: /node_modules/,
       }),
-      terser()],
+      json(),
+      terser(),
+      // nodeResolve(),
+      copy({
+        targets: [
+          // 拷贝模板文件
+          { src: 'src/static/template', dest: 'dist' },
+          { src: 'src/static/request', dest: 'dist/request' }
+        ]
+      })
+    ],
   },
   {
     // 生成 .d.ts 类型声明文件
@@ -35,4 +48,5 @@ export default [
       dts(),
     ],
   },
+
 ];

@@ -6,10 +6,11 @@ interface Config {
     apiUrlPrefix: string;
     needGroup: boolean;
     needJS: boolean;
-    templatePath: {
+    templatePath: any & {
         api: string;
-        interface: string;
+        dts: string;
     };
+    axiosPath: string;
 }
 
 declare const jt2Tt: {
@@ -26,7 +27,7 @@ declare const jt2Tt: {
 declare const fetchData: (url: any, data?: {}) => Promise<axios.AxiosResponse<any, any>>;
 declare const firstUpperCase: (str: any) => any;
 declare const chineseCharacter2pinyin: (character: any) => any;
-declare const getCurrentDirName: (importMetaUrl: any) => string;
+declare const getCurrentDirName: (importMetaUrl?: string) => string;
 
 declare const compileTs: (filePath: any) => void;
 

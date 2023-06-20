@@ -6,21 +6,37 @@ import {
   compileTs,
 } from "./utils";
 import fs from "fs";
-import path, { join } from "path";
+import { join } from "path";
 import { render } from "eta";
 import { mkdirp } from "mkdirp";
-
 import type { Config } from "./types";
+
+export * from "./utils";
+import { getCurrentDirName } from "./utils";
 
 const genApi = async (config: Config) => {
   const {
     url,
     outDir,
-    templatePath,
+    templatePath = {},
     apiUrlPrefix,
     needJS = false,
     needGroup = true,
+    axiosPath = "../request",
   } = config;
+
+  const {
+    api: apiTemplatePath = join(
+      getCurrentDirName(import.meta.url),
+      "./template/apis.eta"
+    ),
+
+    dts: dtsTemplatePath = join(
+      getCurrentDirName(import.meta.url),
+      "./template/dts.eta"
+    ),
+  } = templatePath;
+
   const rawData = (await fetchData(url)).data;
 
   const BaseArrayType = "baseArrayType";
@@ -354,18 +370,17 @@ const genApi = async (config: Config) => {
 
   const wiriteFile = async (url: string, filename: string, data: string) => {
     await mkdirp(url);
-    fs.writeFileSync(path.join(url, filename), data);
+    fs.writeFileSync(join(url, filename), data);
   };
 
   // 处理数据
   const apiData = rawDatahandle(rawData);
   const apiDataTransformed = transform(apiData);
 
-  const apiTemplateStr = fs.readFileSync(templatePath.api, "utf-8");
-  const interfaceTemplateStr = fs.readFileSync(templatePath.interface, "utf-8");
+  const apiTemplateStr = fs.readFileSync(apiTemplatePath, "utf-8");
+  const dtsTemplateStr = fs.readFileSync(dtsTemplatePath, "utf-8");
 
-  const apisStr = render(apiTemplateStr, { apis: apiDataTransformed });
-  const interfaceStr = render(interfaceTemplateStr, { interfaces });
+  const dtsTStr = render(dtsTemplateStr, { interfaces });
 
   // 如果需要分组,则按照分组生成文件
   if (needGroup) {
@@ -377,37 +392,38 @@ const genApi = async (config: Config) => {
       return acc;
     }, {});
 
+    // 默认导出文件内容
     let indexStr = ``;
 
     for (const key in groups) {
       await wiriteFile(
-        path.join(outDir, "./modules/"),
+        join(outDir, "./modules/"),
         `./${key}.ts`,
-        render(apiTemplateStr, { apis: groups[key] })
+        render(apiTemplateStr, { apis: groups[key], axiosPath })
       );
       // 编译ts
       needJS && compileTs(join(outDir, "./modules/", `./${key}.ts`));
-
       indexStr += `// ${groups[key][0].group.name}\n`;
-      indexStr += `import * as ${key} from "./modules/${key}";\n`;
+      indexStr += `import ${key} from "./modules/${key}";\n`;
     }
-    // 默认导出
     indexStr += `export default{
       ${Object.keys(groups).map((key) => `...${key}`)}
     }`;
 
     await wiriteFile(outDir, "/apis.ts", indexStr);
   } else {
+    const apisStr = render(apiTemplateStr, {
+      apis: apiDataTransformed,
+      axiosPath,
+    });
     await wiriteFile(outDir, "./apis.ts", apisStr);
   }
 
-  await wiriteFile(outDir, "./interfaces.d.ts", interfaceStr);
+  await wiriteFile(outDir, "./interfaces.d.ts", dtsTStr);
 
   // 是否要转js文件;
   needJS && compileTs(join(outDir, "./apis.ts"));
 };
-
-export * from "./utils";
 
 export default async (config: Config | Config[]) => {
   const isMultiple = Array.isArray(config);

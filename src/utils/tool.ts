@@ -24,6 +24,6 @@ export const chineseCharacter2pinyin = (character) => {
 };
 
 // 在esm中获取当前目录
-export const getCurrentDirName = (importMetaUrl) => {
+export const getCurrentDirName = (importMetaUrl = import.meta.url) => {
   return path.dirname(url.fileURLToPath(importMetaUrl));
 };

@@ -4,31 +4,23 @@ import { join } from 'path'
 wantedApi([
   {
     // json来源
-    url: 'http://10.200.100.14:8294/v2/api-docs?group=proxy',
+    url: 'http://10.200.100.14:8293/v2/api-docs?group=boss',
     // 输出目录
-    outDir: join(getCurrentDirName(import.meta.url), './a'),
+    outDir: join(getCurrentDirName(import.meta.url), './api/a'),
     // 公共路径前缀
     needJS: true,
     apiUrlPrefix: '/proxy',
-    // 模板地址
-    templatePath: {
-      api: join(getCurrentDirName(import.meta.url), './apis.eta'),
-      interface: join(getCurrentDirName(import.meta.url), './interface.eta')
-    }
   },
   {
     // json来源
-    url: 'http://10.200.100.14:8294/v2/api-docs?group=proxy',
+    url: 'http://10.200.100.14:8293/v2/api-docs?group=boss',
     // 输出目录
-    outDir: join(getCurrentDirName(import.meta.url), './b'),
+    outDir: join(getCurrentDirName(import.meta.url), './api/b'),
     // 公共路径前缀
     apiUrlPrefix: '/proxy',
     needJS: true,
-    // 模板地址
-    templatePath: {
-      api: join(getCurrentDirName(import.meta.url), './apis.eta'),
-      interface: join(getCurrentDirName(import.meta.url), './interface.eta')
-    }
+    needGroup: false,
+    axiosPath: '../hahaha'
   }
 ])
 
