@@ -1,5 +1,5 @@
 export interface Config {
-    url: string;
+    rawJson: string;
     outDir: string;
     apiUrlPrefix: string;
     needGroup: boolean;

@@ -1,6 +1,6 @@
 export interface Config {
   // 路径
-  url: string;
+  rawJson: string;
   // 输出目录
   outDir: string;
   // api公共前缀, 例如: /api,会在输出文件中去掉这部分

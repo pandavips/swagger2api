@@ -1,4 +1,20 @@
-# Swagger JSON 转Api定义的工具
+
+<p align='center'>
+根据json快速生成api定义文件,拒绝低级重复工作,关注身心健康~
+<br>
+</p>
+
+<br>
+
+## 特性
+
+- ⚡️ 同时支持ts与js的方式
+
+- 📑 支持自定义模板
+
+- ☁️ 支持远程采集json,同时支持本地json
+
+<br>
 
 ## 安装
 
@@ -14,18 +30,20 @@ pnpm i swagger2apis -D
 
 ```js
 import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
+import rawJson from './apiJSON.js';
 import { join } from 'path'
 
 wantedApi({
-  // json地址来源,目前仅支持远程采集,后续支持本地json
-  url: '[json来源](https://github.com/pandavips/swagger2api)',
+  // json地址来源,可以是本地json,也可以是地址远程采集
+  // rawJson: 'https://github.com/pandavips/swagger2api',
+  rawJson: rawJson,
   // 定义文件输出目录目录
   outDir: join(getCurrentDirName(import.meta.url), './api'),
   // 公共路径前缀,最终输出会擦除掉这个前缀
   apiUrlPrefix: '/proxy',
   // 是否需要js
   needJS: true,
-  // 是否需要结构化分组
+  // 是否需要结构化分组放置文件
   needGroup:true,
   // 模板文件地址,如果省略将使用自带模板,若有需要可以将模板放置到本地然后进行修改,然后采用本地模板
   // templatePath:{
@@ -76,12 +94,12 @@ import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
 import { join } from 'path'
 wantedApi([
   {
-    url: '来源一',
+    rawJson: '来源一',
     outDir: join(getCurrentDirName(import.meta.url), './api/a'),
     apiUrlPrefix: '/proxy',
   },
   {
-    url: '来源二',
+    rawJson: '来源二',
     outDir: join(getCurrentDirName(import.meta.url), './api/b'),
     apiUrlPrefix: '/proxy',
   }
@@ -94,3 +112,8 @@ wantedApi([
 
 如果你已经在项目里安装,会在这个路径下找到模板文件
 `\node_modules\swagger2apis\dist\template`
+
+或者来到github仓库(可能需要留意版本差异):
+
+- [api定义文件模板(apis)](https://github.com/pandavips/swagger2api/blob/main/src/static/template/apis.eta)
+- [interface模板(dts)](https://github.com/pandavips/swagger2api/blob/main/src/static/template/dts.eta)

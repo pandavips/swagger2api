@@ -4,6 +4,8 @@ import {
   firstUpperCase,
   chineseCharacter2pinyin,
   compileTs,
+  isUrl,
+  removeSpecialCharacter,
 } from "./utils";
 import fs from "fs";
 import { join } from "path";
@@ -16,7 +18,7 @@ import { getCurrentDirName } from "./utils";
 
 const genApi = async (config: Config) => {
   const {
-    url,
+    rawJson,
     outDir,
     templatePath = {},
     apiUrlPrefix,
@@ -37,7 +39,7 @@ const genApi = async (config: Config) => {
     ),
   } = templatePath;
 
-  const rawData = (await fetchData(url)).data;
+  const rawData = isUrl(rawJson) ? (await fetchData(rawJson)).data : rawJson;
 
   const BaseArrayType = "baseArrayType";
   const interfaces: any[] = [];
@@ -270,15 +272,16 @@ const genApi = async (config: Config) => {
       const isUrlEndParam = !!codeName;
 
       const CODE_LINK = "ByCode";
-      const apiName =
+      const apiName = removeSpecialCharacter(
         url
           .replaceAll(urlEndParamReg, "")
           .split("/")
           .map(firstUpperCase)
           .join("") +
-        // 路径参数添加特殊标识
-        (isUrlEndParam ? CODE_LINK + codeName : "") +
-        method;
+          // 路径参数添加特殊标识
+          (isUrlEndParam ? CODE_LINK + codeName : "") +
+          method
+      );
 
       const queryCodeUrl = "/" + matchResult.map((r) => `$${r[0]}`).join("/");
 
