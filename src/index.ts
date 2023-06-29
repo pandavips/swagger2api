@@ -11,6 +11,7 @@ import fs from "fs";
 import { join } from "path";
 import { render } from "eta";
 import { mkdirp } from "mkdirp";
+import chalk from "chalk";
 import type { Config } from "./types";
 
 export * from "./utils";
@@ -430,7 +431,7 @@ const genApi = async (config: Config) => {
 
 export default async (config: Config | Config[]) => {
   const isMultiple = Array.isArray(config);
-  console.log("开始生成api...");
+  console.log(chalk.yellow("开始生成api..."));
   if (isMultiple) {
     for (const c of config) {
       await genApi(c);
@@ -438,6 +439,5 @@ export default async (config: Config | Config[]) => {
   } else {
     await genApi(config);
   }
-
-  console.log("完成工作,enjoy it!");
+  console.log(chalk.green("完成工作,enjoy it!"));
 };

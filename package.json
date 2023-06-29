@@ -1,6 +1,6 @@
 {
   "name": "swagger2apis",
-  "version": "1.1.19",
+  "version": "1.1.20",
   "description": "swagger转api工具",
   "packageManager": "pnpm@7.1.0",
   "type": "module",
@@ -45,6 +45,7 @@
   "dependencies": {
     "@rollup/plugin-json": "^6.0.0",
     "axios": "^1.4.0",
+    "chalk": "^5.2.0",
     "eta": "^2.2.0",
     "mkdirp": "^3.0.1",
     "pinyin": "2.11",

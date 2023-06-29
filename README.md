@@ -117,3 +117,18 @@ wantedApi([
 
 - [api定义文件模板(apis)](https://github.com/pandavips/swagger2api/blob/main/src/static/template/apis.eta)
 - [interface模板(dts)](https://github.com/pandavips/swagger2api/blob/main/src/static/template/dts.eta)
+
+## 更简单的使用方案,访问下边的网站
+
+[swagger2apis辅助工具](https://dainty-meerkat-f932e6.netlify.app/swagger2apis/tool)
+
+注意,这个页面使用了`showDirectoryPicker`api,需要留意你的浏览器是否支持这个api;并且,最好在进行操作前保证git工作空间是干净的,这样即使产生了错误的信息,也更方便你进行回滚.
+
+你需要提供至多两个参数就可以把这个小工具集成到你的项目:一个是json采集的地址,一个是api路径公共前缀.
+
+这个页面在你选择项目根目录之后执行的流程:
+
+- 找到src下的api目录,写入生成脚本(如果有这个文件会进行覆盖哈)
+- 修改package.json,添加依赖和执行脚本
+
+可能这个目录结构并不是通用的,你可以做一定修改来使用,不论你是修改本页面(ctrl+s),还是修改你的项目结构.
