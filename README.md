@@ -43,8 +43,8 @@ wantedApi({
   apiUrlPrefix: '/proxy',
   // 是否需要js
   needJS: true,
-  // 是否需要结构化分组放置文件
-  needGroup:true,
+  // 是否需要模块化分组输出文件
+  modular:true,
   // 模板文件地址,如果省略将使用自带模板,若有需要可以将模板放置到本地然后进行修改,然后采用本地模板
   // templatePath:{
     // api模板

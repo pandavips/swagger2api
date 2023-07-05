@@ -20,7 +20,7 @@ wantedApi([
     // 公共路径前缀
     apiUrlPrefix: '/proxy',
     needJS: true,
-    needGroup: false,
+    modular: false,
     axiosPath: '../hahaha'
   }
 ])

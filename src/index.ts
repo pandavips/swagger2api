@@ -24,7 +24,7 @@ const genApi = async (config: Config) => {
     templatePath = {},
     apiUrlPrefix,
     needJS = false,
-    needGroup = true,
+    modular = true,
     axiosPath = "../request",
   } = config;
 
@@ -387,7 +387,7 @@ const genApi = async (config: Config) => {
   const dtsTStr = render(dtsTemplateStr, { interfaces });
 
   // 如果需要分组,则按照分组生成文件
-  if (needGroup) {
+  if (modular) {
     const groups = apiDataTransformed.reduce((acc, cur) => {
       const { group } = cur;
       const { prefix, name } = group;
