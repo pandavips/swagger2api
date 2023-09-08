@@ -9,9 +9,9 @@ _%>
 <% interfaces.forEach(function(inter,index){ %>
 declare interface <%- = inter.name %> {
   <% inter.schema.forEach(function(s,i){ %>
+  
   <%_ if(s.hasDescription){ _%>
-    // <%_ = s.description -%>
-
+    /** <%_ = s.description -%> */
   <% } %>
     <%_ = s.key %><%= s.required?'':'?' %>: <%= s.type %>;
   <% }) _%>
