@@ -7,4 +7,5 @@ export declare const jt2Tt: {
     array: string;
     object: string;
     timestamp: string;
+    any: string;
 };

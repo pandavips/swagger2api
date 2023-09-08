@@ -222,7 +222,7 @@ const genApi = async (config: Config) => {
         });
       } else {
         if (propType === "array") {
-          propType = jt2Tt[prop.items.type] + "[]";
+          propType = jt2Tt[prop.items?.type||'any'] + "[]";
         }
         propsSchema.push({
           key,

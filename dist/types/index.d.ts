@@ -2,7 +2,7 @@ export interface Config {
     rawJson: string;
     outDir: string;
     apiUrlPrefix: string;
-    needGroup: boolean;
+    modular: boolean;
     needJS: boolean;
     templatePath: any & {
         api: string;
