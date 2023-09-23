@@ -6,6 +6,8 @@ import json from '@rollup/plugin-json';
 // import nodeResolve from '@rollup/plugin-node-resolve';
 import copy from 'rollup-plugin-copy'
 
+import packageJson from './package.json'
+
 export default [
   {
     // 核心选项
@@ -35,7 +37,8 @@ export default [
           { src: 'src/static/request', dest: 'dist/request' }
         ]
       }),
-      rollupTypescript({ outDir: "dist", declaration: true, declarationDir: "dist", })
+      rollupTypescript({ outDir: "dist", declaration: true, declarationDir: "dist", exclude: 'example' })
     ],
+    external: packageJson.dependencies ? Object.keys(packageJson.dependencies) : [],
   },
 ];

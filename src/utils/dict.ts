@@ -1,4 +1,4 @@
-export const jt2Tt = {
+export const JavaType2JavaScriptType = {
   integer: "number",
   number: "number",
   long: "number",
@@ -7,5 +7,5 @@ export const jt2Tt = {
   array: "array",
   object: "object",
   timestamp: "string",
-  any:'any'
+  any: 'any'
 };

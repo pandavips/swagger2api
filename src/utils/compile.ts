@@ -1,6 +1,6 @@
-import ts, { ScriptTarget } from "typescript";
 import fs from "fs";
 import { join, sep } from "path";
+import ts from "typescript";
 
 // 编译ts到js
 export const compileTs = (filePath) => {

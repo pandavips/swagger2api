@@ -14,11 +14,10 @@ export const fetchData = (url, data = {}) => {
 };
 
 // 单词首字母大写
-export const firstUpperCase = (str) =>
-  str.replace(/^\S/, (s) => s.toUpperCase());
+export const firstUpperCase = (str: string) => str.replace(/^\S/, (s: string) => s.toUpperCase());
 
 // 汉字转拼音首字母大写函数
-export const chineseCharacter2pinyin = (character) => {
+export const chineseCharacter2pinyin = (character: string) => {
   if (!character) return "";
   return Pinyin(character, {
     style: Pinyin.STYLE_NORMAL,

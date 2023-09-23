@@ -1,21 +1,21 @@
+import chalk from "chalk";
+import { render } from "eta";
+import fs from "fs";
+import { mkdirp } from "mkdirp";
+import { join } from "path";
+import type { Config } from "./types";
 import {
-  jt2Tt,
-  fetchData,
-  firstUpperCase,
   chineseCharacter2pinyin,
   compileTs,
+  fetchData,
+  firstUpperCase,
+  getCurrentDirName,
   isUrl,
+  JavaType2JavaScriptType,
   removeSpecialCharacter,
 } from "./utils";
-import fs from "fs";
-import { join } from "path";
-import { render } from "eta";
-import { mkdirp } from "mkdirp";
-import chalk from "chalk";
-import type { Config } from "./types";
 
 export * from "./utils";
-import { getCurrentDirName } from "./utils";
 
 const genApi = async (config: Config) => {
   const {
@@ -78,7 +78,7 @@ const genApi = async (config: Config) => {
             name,
             description,
             required,
-            type: jt2Tt[type],
+            type: JavaType2JavaScriptType[type],
             schema: schemaName2json(schema),
           });
 
@@ -119,13 +119,13 @@ const genApi = async (config: Config) => {
     const schemaData = definitions[schemaName];
     if (!schemaData) return null;
 
-    const schemaType = jt2Tt[schema.type] || "";
+    const schemaType = JavaType2JavaScriptType[schema.type] || "";
     const schemaItemsType = schema?.items?.type;
 
     if (schemaType === "array" && schemaItemsType) {
       return {
         title: BaseArrayType,
-        schemaType: jt2Tt[schemaItemsType],
+        schemaType: JavaType2JavaScriptType[schemaItemsType],
       };
     }
 
@@ -134,7 +134,7 @@ const genApi = async (config: Config) => {
     return {
       title,
       schemaType,
-      type: jt2Tt[type],
+      type: JavaType2JavaScriptType[type],
       properties,
       required,
     };
@@ -180,7 +180,7 @@ const genApi = async (config: Config) => {
     // 开始循环处理每一个字段
     Object.keys(props).forEach((key) => {
       const prop = props[key];
-      let propType = jt2Tt[prop.type];
+      let propType = JavaType2JavaScriptType[prop.type];
       const required = requiredKeys.includes(key);
       const description = prop.description;
       const hasDescription = !!description;
@@ -222,7 +222,7 @@ const genApi = async (config: Config) => {
         });
       } else {
         if (propType === "array") {
-          propType = jt2Tt[prop.items?.type||'any'] + "[]";
+          propType = JavaType2JavaScriptType[prop.items?.type||'any'] + "[]";
         }
         propsSchema.push({
           key,
