@@ -1,5 +1,12 @@
 {
+  "name": "swagger2apis",
+  "version": "2.0.0",
+  "description": "swagger转api工具",
   "packageManager": "pnpm@7.1.0",
+  "type": "module",
+  "main": "./dist/main.esm.mjs",
+  "module": "./dist/main.esm.mjs",
+  "types": "./dist/index.d.ts",
   "keywords": [
     "swagger",
     "api",
@@ -22,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/pandavips/swagger2api/issues",
     "email": "919401990@qq.com"
+  },
+  "dependencies": {
+    "@swagger2apis/utils": "workspace:^"
   }
 }

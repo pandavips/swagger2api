@@ -2,14 +2,28 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    // "types": ["jest"],
     "esModuleInterop": true,
+    "resolveJsonModule": true,
     "moduleResolution": "node",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitAny": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "sourceMap": false,
+    "newLine": "LF",
+    "useDefineForClassFields": false,
+    "allowJs": false,
+    "noUnusedLocals": true,
+    "experimentalDecorators": true,
+    "isolatedModules": true,
+    "removeComments": false,
+    "baseUrl": "./",
+    "rootDir": "."
   },
+  "paths": {
+    "@swagger2apis/*": ["packages/*/src"]
+  },
+  "include": ["packages/*/src"],
   "ts-node": {
     "esm": true
   }

@@ -1,16 +1,25 @@
 import Pinyin from "pinyin";
-import axios from "axios";
-import url from "node:url";
 import path from "path";
+import url from "node:url";
 
 // 判断是否是对象
 export const isObject = (obj: any) => {
   return Object.prototype.toString.call(obj) === "[object Object]";
 };
 
-// 获取数据
-export const fetchData = (url, data = {}) => {
-  return axios.get(url, { params: data });
+// 判断是否是一个数组
+export const isArray = (obj: any) => {
+  return Object.prototype.toString.call(obj) === "[object Array]";
+};
+
+// 判断是否是一个函数
+export const isFunction = (obj: any) => {
+  return Object.prototype.toString.call(obj) === "[object Function]";
+};
+
+// 判断是否是一个Promise
+export const isPromise = (obj: any) => {
+  return isObject(obj) && isFunction(obj.then) && isFunction(obj.catch) && !isFunction(obj.constructor);
 };
 
 // 单词首字母大写
@@ -22,9 +31,14 @@ export const chineseCharacter2pinyin = (character: string) => {
   return Pinyin(character, {
     style: Pinyin.STYLE_NORMAL,
   })
-    .map((p) => firstUpperCase(p[0]))
+    .map((p: any[]) => firstUpperCase(p[0]))
     .join("")
     .replace(/[^a-zA-Z ]/g, "");
+};
+
+// 去除字符串中所有特殊字符
+export const removeSpecialCharacter = (str: string) => {
+  return str.replace(/[^\w\s]/gi, "");
 };
 
 // 在esm中获取当前目录
@@ -33,13 +47,6 @@ export const getCurrentDirName = (importMetaUrl = import.meta.url) => {
 };
 
 // 判断是否是一个url
-export const isUrl = (str: string | object) => {
-  if (isObject(str)) return false;
-  const reg = /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/;
-  return reg.test(str as string);
-};
-
-// 去除字符串所有特殊字符
-export const removeSpecialCharacter = (str: string) => {
-  return str.replace(/[^\w\s]/gi, "");
+export const isUrl = (str: string) => {
+  return /^https?:\/\//.test(str);
 };

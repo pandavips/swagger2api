@@ -19,9 +19,5 @@ export const compileTs = (filePath) => {
   });
 
   // 将编译后的 JavaScript 文件写入磁盘
-  fs.writeFileSync(
-    join(fileDir, `./${fileNameNoExt}.js`),
-    res.outputText,
-    "utf8"
-  );
+  fs.writeFileSync(join(fileDir, `./${fileNameNoExt}.js`), res.outputText, "utf8");
 };
