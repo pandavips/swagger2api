@@ -3,7 +3,6 @@ import { render } from "eta";
 import fs from "fs";
 import { mkdirp } from "mkdirp";
 import { join } from "path";
-import type { Config } from "./types";
 import {
   chineseCharacter2pinyin,
   compileTs,
@@ -21,24 +20,21 @@ const genApi = async (config: Config) => {
   const {
     rawJson,
     outDir,
-    templatePath = {},
+    templatePath,
     apiUrlPrefix,
     needJS = false,
     modular = true,
     axiosPath = "../request",
   } = config;
 
-  const {
-    api: apiTemplatePath = join(
-      getCurrentDirName(import.meta.url),
-      "./template/apis.eta"
-    ),
-
-    dts: dtsTemplatePath = join(
-      getCurrentDirName(import.meta.url),
-      "./template/dts.eta"
-    ),
-  } = templatePath;
+  const apiTemplatePath = templatePath?.api ?? join(
+    getCurrentDirName(import.meta.url),
+    "./template/apis.eta"
+  )
+  const dtsTemplatePath = templatePath?.api ?? join(
+    getCurrentDirName(import.meta.url),
+    "./template/dts.eta"
+  )
 
   const rawData = isUrl(rawJson) ? (await fetchData(rawJson)).data : rawJson;
 
@@ -94,7 +90,7 @@ const genApi = async (config: Config) => {
           schema: schemaName2json(responseBody.schema),
         };
 
-        const finalPath = path.slice(apiUrlPrefix.length);
+        const finalPath = path.slice(apiUrlPrefix?.length || 0);
         result.push({
           path: finalPath,
           method: method.toUpperCase(),
@@ -222,7 +218,7 @@ const genApi = async (config: Config) => {
         });
       } else {
         if (propType === "array") {
-          propType = JavaType2JavaScriptType[prop.items?.type||'any'] + "[]";
+          propType = JavaType2JavaScriptType[prop.items?.type || 'any'] + "[]";
         }
         propsSchema.push({
           key,
@@ -279,9 +275,9 @@ const genApi = async (config: Config) => {
           .split("/")
           .map(firstUpperCase)
           .join("") +
-          // 路径参数添加特殊标识
-          (isUrlEndParam ? CODE_LINK + codeName : "") +
-          method
+        // 路径参数添加特殊标识
+        (isUrlEndParam ? CODE_LINK + codeName : "") +
+        method
       );
 
       const queryCodeUrl = "/" + matchResult.map((r) => `$${r[0]}`).join("/");
@@ -364,8 +360,8 @@ const genApi = async (config: Config) => {
           resShemaType === "array"
             ? `Required<${resType}>[]`
             : resType === null
-            ? null
-            : `Required<${resType}>`,
+              ? null
+              : `Required<${resType}>`,
       });
     });
 

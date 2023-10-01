@@ -1,28 +1,15 @@
 import wantedApi, { getCurrentDirName } from '../dist/main.esm.mjs';
 import { join } from 'path'
-// import rawJson from './apiJSON.js';
-
 wantedApi([
   {
     // json来源
-    rawJson: 'http://10.200.100.14:8493/v2/api-docs?group=boss',
+    rawJson: 'https://petstore.swagger.io/v2/swagger.json',
     // 输出目录
     outDir: join(getCurrentDirName(import.meta.url), './api/a'),
     // 公共路径前缀
     needJS: true,
     apiUrlPrefix: '/proxy',
   },
-  // {
-  //   // json来源
-  //   rawJson: 'http://xxxxxxxx/api',
-  //   // 输出目录
-  //   outDir: join(getCurrentDirName(import.meta.url), './api/b'),
-  //   // 公共路径前缀
-  //   apiUrlPrefix: '/proxy',
-  //   needJS: true,
-  //   modular: false,
-  //   axiosPath: '../hahaha'
-  // }
 ])
 
 
