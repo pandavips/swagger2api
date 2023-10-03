@@ -1,5 +1,8 @@
 {
+  // "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
     "target": "ESNext",
     "module": "ESNext",
     "esModuleInterop": true,
@@ -25,6 +28,9 @@
   },
   "include": ["packages/*/src"],
   "ts-node": {
-    "esm": true
+    "esm": true,
+    "transpileOnly": true,
+    "files": true,
+    "compilerOptions": {}
   }
 }

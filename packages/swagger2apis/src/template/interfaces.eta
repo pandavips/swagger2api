@@ -1,0 +1,16 @@
+/* eslint-disable */
+// @ts-nocheck
+/**
+  * 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
+  */
+<%
+const { interfaces } = it;
+_%>
+<% interfaces.forEach(function(interface,index){ %>
+declare interface <%- = interface.interfaceName %> {
+  <% interface.props.forEach(function(prop,i){ %>
+    /** <%_ = prop.description -%> */
+    <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %>;
+  <% }) _%>
+}
+<% }) %>

@@ -1,2 +1,2 @@
-export * from "./common";
-export * from "./typescript";
+export * from "./common.ts";
+export * from "./typescript.ts";

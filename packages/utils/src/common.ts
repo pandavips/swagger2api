@@ -17,6 +17,11 @@ export const isFunction = (obj: any) => {
   return Object.prototype.toString.call(obj) === "[object Function]";
 };
 
+// 判断是否是一个字符串
+export const isString = (obj: any) => {
+  return Object.prototype.toString.call(obj) === "[object String]";
+};
+
 // 判断是否是一个Promise
 export const isPromise = (obj: any) => {
   return isObject(obj) && isFunction(obj.then) && isFunction(obj.catch) && !isFunction(obj.constructor);

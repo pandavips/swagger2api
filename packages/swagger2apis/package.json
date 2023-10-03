@@ -23,14 +23,12 @@
   ],
   "scripts": {},
   "license": "ISC",
-  "devDependencies": {
-    "@types/node": "^20.8.0"
-  },
   "bugs": {
     "url": "https://github.com/pandavips/swagger2api/issues",
     "email": "919401990@qq.com"
   },
   "dependencies": {
-    "@swagger2apis/utils": "workspace:^"
+    "@swagger2apis/utils": "workspace:^",
+    "eta": "^3.1.1"
   }
 }

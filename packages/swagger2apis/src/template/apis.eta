@@ -1,44 +1,58 @@
 <%
-const { apis,axiosPath} = it;
+const { apisData,interfaces} = it;
 _%>
 /* eslint-disable */
 // @ts-nocheck
 
 /**
-  * 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
-  */
+* 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
+*/
 
-import request,{ExtraInInternalAxiosRequestConfig} from "<%= axiosPath %>";
+import request from "./request";
+
 export default {
-  <% apis.forEach(function(api,index){ 
-  %>
+<% apisData.forEach(function(api,index){ %>
 
-  /**
-   * @description: <%= api.description %>
+/**
+  * @description: <%= api.description %>
 
-   */
-
-  <%= api.apiName %>: (
-  <% if(api.isUrlEndParam){ %>
-  <%= api.params.map((a)=>a+':string').join(',') %>,
-  <% } else if(api.reqType) { %>
-  <%= api.params[0] %>: <%= api.reqType %>={},
-  <% } %>
-  config:Partial<ExtraInInternalAxiosRequestConfig>={}
-  ): Promise<<%~ api.resType %>> => {
-    return request({
-      url: `<%= api.url %>`,
-      method: "<%= api.method %>",
-      <% if(api.reqType&&!api.isUrlEndParam){ %>
-        <% if(api.method!=='GET'){ %>
-        data: <%= api.params[0] -%>,
-        <% }%>
-        <% if(api.method==='GET'){ %>
-        params: <%= api.params[0] -%>,
-        <% }%>
-      <% }%>
-      ...config
-    });
-  }<%= index===apis.length-1?'':',' -%>
+<% if (api.interfaces.length) { %>
+  <% api.interfaces.forEach(function(interface,index){ %>
+  <%- ~ interface.pos %>
+  <%- = interface.interfaceName %> {
+    <% interface.props.forEach(function(prop,i){ %>
+  <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %> // <%_ = prop.description -%> 
+    <% }) _%>
+  }
   <% }) %>
-};
+<% } %>
+*/
+<%= api.fnName %>: (
+<% if (api.paramsInfo.show) { %>
+  <%=api.helpInfo.hasPathParameter?'code':'data' %>
+  :<%= api.paramsInfo.type %>
+  =<%~ api.paramsInfo.defaultVal %>
+<% } %>
+): Promise<<%~ api.responseType %>> => {
+  return request({
+  url: `<%= api.path %>`,
+  method: "<%= api.method %>",
+  <% if (api.helpInfo.hasBodyParameter||api.helpInfo.hasFormDataParameter) { %>
+  data,
+  <% } %>
+  <% if (api.helpInfo.hasQueryParameter) { %>
+  params:data,
+  <% } %>
+  });
+  }<%= index===apisData.length-1?'':',' -%>
+  <% }) %>
+  };
+
+<% interfaces.forEach(function(interface,index){ %>
+interface <%- = interface.interfaceName %> {
+  <% interface.props.forEach(function(prop,i){ %>
+    /** <%_ = prop.description -%> */
+    <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %>;
+  <% }) _%>
+}
+<% }) %>
