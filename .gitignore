@@ -1,3 +1,4 @@
 node_modules
 example/api/*
-/dist
+dist
+.rollup.cache
