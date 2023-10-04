@@ -14,8 +14,8 @@ export const compileTs = (filePath) => {
   const res = ts.transpileModule(tsFile, {
     compilerOptions: {
       target: 9,
-      module: ts.ModuleKind.ESNext,
-    },
+      module: ts.ModuleKind.ESNext
+    }
   });
 
   // 将编译后的 JavaScript 文件写入磁盘

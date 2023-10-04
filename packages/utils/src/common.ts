@@ -34,7 +34,7 @@ export const firstUpperCase = (str: string) => str.replace(/^\S/, (s: string) =>
 export const chineseCharacter2pinyin = (character: string) => {
   if (!character) return "";
   return Pinyin(character, {
-    style: Pinyin.STYLE_NORMAL,
+    style: Pinyin.STYLE_NORMAL
   })
     .map((p: any[]) => firstUpperCase(p[0]))
     .join("")
@@ -51,7 +51,7 @@ export const getCurrentDirName = (importMetaUrl = import.meta.url) => {
   return path.dirname(url.fileURLToPath(importMetaUrl));
 };
 
-// 判断是否是一个url
-export const isUrl = (str: string) => {
+// 判断是否是一个http url
+export const isHttpUrl = (str: string) => {
   return /^https?:\/\//.test(str);
 };

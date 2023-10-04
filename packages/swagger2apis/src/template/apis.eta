@@ -16,7 +16,7 @@ export default {
 /**
   * @description: <%= api.description %>
 
-<% if (api.interfaces.length) { %>
+<% if (api.interfaces?.length) { %>
   <% api.interfaces.forEach(function(interface,index){ %>
   <%- ~ interface.pos %>
   <%- = interface.interfaceName %> {

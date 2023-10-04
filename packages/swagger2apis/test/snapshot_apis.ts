@@ -22,7 +22,7 @@ export default {
     return request({
       url: `/boss/account/addAdjust`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -31,7 +31,7 @@ export default {
   Boss_Account_CheckKickOutGet: (): Promise<null> => {
     return request({
       url: `/boss/account/checkKickOut`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -40,7 +40,7 @@ export default {
   Boss_Account_CheckKickOutPost: (): Promise<null> => {
     return request({
       url: `/boss/account/checkKickOut`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -53,7 +53,7 @@ export default {
   Boss_Account_CollectionAccountGet: (): Promise<ICollectionAccountResp> => {
     return request({
       url: `/boss/account/collectionAccount`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -68,7 +68,7 @@ export default {
   Boss_Account_HotAccountGet: (): Promise<IHotAccountResp> => {
     return request({
       url: `/boss/account/hotAccount`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -87,7 +87,7 @@ export default {
     return request({
       url: `/boss/account/login`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -96,7 +96,7 @@ export default {
   Boss_Account_LogoutGet: (): Promise<null> => {
     return request({
       url: `/boss/account/logout`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -105,7 +105,7 @@ export default {
   Boss_Account_LogoutPost: (): Promise<null> => {
     return request({
       url: `/boss/account/logout`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -118,7 +118,7 @@ export default {
   Boss_Account_PlatformGet: (): Promise<IPlatformAccountResp> => {
     return request({
       url: `/boss/account/platform`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -141,7 +141,7 @@ export default {
     return request({
       url: `/boss/account/queryAdjust`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -159,7 +159,7 @@ export default {
     return request({
       url: `/boss/account/statistics/balance/current`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -174,7 +174,7 @@ export default {
     return request({
       url: `/boss/account/statistics/balance/history`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -191,7 +191,7 @@ export default {
     return request({
       url: `/boss/account/userBalance`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -210,7 +210,7 @@ export default {
     return request({
       url: `/boss/assetChangeLog/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -236,7 +236,7 @@ export default {
     return request({
       url: `/boss/assetChangeLog/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -245,7 +245,7 @@ export default {
   Boss_AssetChangeLog_TypeGet: (): Promise<IAssetChangeLogType[]> => {
     return request({
       url: `/boss/assetChangeLog/type`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -258,7 +258,7 @@ export default {
     return request({
       url: `/boss/bank/card/delete`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -281,7 +281,7 @@ export default {
     return request({
       url: `/boss/bank/card/detail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -296,7 +296,7 @@ export default {
     return request({
       url: `/boss/bank/card/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -313,7 +313,7 @@ export default {
     return request({
       url: `/boss/bank/card/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -334,7 +334,7 @@ export default {
     return request({
       url: `/boss/bank/detail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -347,7 +347,7 @@ export default {
     return request({
       url: `/boss/bank/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -375,7 +375,7 @@ export default {
     return request({
       url: `/boss/bank/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -392,7 +392,7 @@ export default {
     return request({
       url: `/boss/bonus/config/get`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -401,7 +401,7 @@ export default {
   Boss_Bonus_Config_GetItems_$userId$Post: (code: string = ""): Promise<IFenHongPeiZhiMingXi[]> => {
     return request({
       url: `/boss/bonus/config/getItems/${code}`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -415,7 +415,7 @@ export default {
     return request({
       url: `/boss/bonus/config/save`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -436,7 +436,7 @@ export default {
     return request({
       url: `/boss/channel/deposit/withdraw/summary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -451,7 +451,7 @@ export default {
     return request({
       url: `/boss/channel/fetch/game/action`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -466,7 +466,7 @@ export default {
     return request({
       url: `/boss/channel/fetch/game/actionPeriod`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -480,7 +480,7 @@ export default {
     return request({
       url: `/boss/channel/rate/delete`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -489,7 +489,7 @@ export default {
   Boss_Channel_Rate_ListPost: (): Promise<IChannelRateResp[]> => {
     return request({
       url: `/boss/channel/rate/list`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -503,7 +503,7 @@ export default {
     return request({
       url: `/boss/channel/rate/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -519,7 +519,7 @@ export default {
     return request({
       url: `/boss/cms/article/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -532,7 +532,7 @@ export default {
     return request({
       url: `/boss/cms/article/disable`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -545,7 +545,7 @@ export default {
     return request({
       url: `/boss/cms/article/publish`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -569,7 +569,7 @@ export default {
     return request({
       url: `/boss/cms/article/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -591,7 +591,7 @@ export default {
     return request({
       url: `/boss/cms/article/queryOne`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -608,7 +608,7 @@ export default {
     return request({
       url: `/boss/cms/article/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -624,7 +624,7 @@ export default {
     return request({
       url: `/boss/cms/banner/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -637,7 +637,7 @@ export default {
     return request({
       url: `/boss/cms/banner/disable`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -650,7 +650,7 @@ export default {
     return request({
       url: `/boss/cms/banner/publish`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -673,7 +673,7 @@ export default {
     return request({
       url: `/boss/cms/banner/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -696,7 +696,7 @@ export default {
     return request({
       url: `/boss/cms/banner/queryOne`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -713,7 +713,7 @@ export default {
     return request({
       url: `/boss/cms/banner/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -727,7 +727,7 @@ export default {
     return request({
       url: `/boss/cms/label/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -740,7 +740,7 @@ export default {
     return request({
       url: `/boss/cms/label/delete`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -749,7 +749,7 @@ export default {
   Boss_Cms_Label_QueryAllGet: (): Promise<IUserLabelResp[]> => {
     return request({
       url: `/boss/cms/label/queryAll`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -764,7 +764,7 @@ export default {
     return request({
       url: `/boss/cms/label/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -781,7 +781,7 @@ export default {
   Boss_Collect_GetGet: (): Promise<ICollectResp> => {
     return request({
       url: `/boss/collect/get`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -795,7 +795,7 @@ export default {
     return request({
       url: `/boss/collect/updateCollect`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -809,7 +809,7 @@ export default {
     return request({
       url: `/boss/collect/updateConfig`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -823,7 +823,7 @@ export default {
     return request({
       url: `/boss/collect/updateHot`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -844,7 +844,7 @@ export default {
     return request({
       url: `/boss/common/log/operate/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -872,7 +872,7 @@ export default {
     return request({
       url: `/boss/common/log/operate/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -886,7 +886,7 @@ export default {
     return request({
       url: `/boss/common/log/queryCheckLog`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -895,7 +895,7 @@ export default {
   Boss_Currency_GetPost: (): Promise<string> => {
     return request({
       url: `/boss/currency/get`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -911,7 +911,7 @@ export default {
     return request({
       url: `/boss/currency/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -928,7 +928,7 @@ export default {
     return request({
       url: `/boss/currency/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -937,7 +937,7 @@ export default {
   Boss_Currency_Usdt_RatePost: (): Promise<number> => {
     return request({
       url: `/boss/currency/usdt/rate`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -950,7 +950,7 @@ export default {
     return request({
       url: `/boss/currency/usdt/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -972,7 +972,7 @@ export default {
     return request({
       url: `/boss/daily/statistics/depositWithdraw`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -987,7 +987,7 @@ export default {
     return request({
       url: `/boss/daily/statistics/depositWithdrawUserCount`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1008,7 +1008,7 @@ export default {
     return request({
       url: `/boss/daily/statistics/userAction`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1021,7 +1021,7 @@ export default {
     return request({
       url: `/boss/deposit/checkPass`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1035,7 +1035,7 @@ export default {
     return request({
       url: `/boss/deposit/checkRefuse`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1054,7 +1054,7 @@ export default {
   Boss_Deposit_Config_GetDigital_$chain$Post: (code: string = ""): Promise<IWithdrawInfoResp> => {
     return request({
       url: `/boss/deposit/config/getDigital/${code}`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -1073,7 +1073,7 @@ export default {
   Boss_Deposit_Config_GetLeger_$currencyCode$Post: (code: string = ""): Promise<IWithdrawInfoResp> => {
     return request({
       url: `/boss/deposit/config/getLeger/${code}`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -1093,7 +1093,7 @@ export default {
     return request({
       url: `/boss/deposit/config/setDigital`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1113,7 +1113,7 @@ export default {
     return request({
       url: `/boss/deposit/config/setLeger`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1139,7 +1139,7 @@ export default {
     return request({
       url: `/boss/deposit/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1152,7 +1152,7 @@ export default {
     return request({
       url: `/boss/deposit/getCard`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1185,7 +1185,7 @@ export default {
     return request({
       url: `/boss/deposit/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1205,7 +1205,7 @@ export default {
     return request({
       url: `/boss/deposit/summary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1225,7 +1225,7 @@ export default {
     return request({
       url: `/boss/fee/statistics/fee`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1235,7 +1235,7 @@ export default {
     return request({
       url: `/boss/file/download/${code}`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1245,7 +1245,7 @@ export default {
     return request({
       url: `/boss/file/download/${code}`,
       method: "POST",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1262,7 +1262,7 @@ export default {
     return request({
       url: `/boss/file/upload`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1277,7 +1277,7 @@ export default {
     return request({
       url: `/boss/game/base/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1302,7 +1302,7 @@ export default {
     return request({
       url: `/boss/game/base/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1318,7 +1318,7 @@ export default {
     return request({
       url: `/boss/game/base/updateIcon`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1332,7 +1332,7 @@ export default {
     return request({
       url: `/boss/game/base/updateLabel`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1346,7 +1346,7 @@ export default {
     return request({
       url: `/boss/game/base/updateType`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1360,7 +1360,7 @@ export default {
     return request({
       url: `/boss/game/channel/changeLogo`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1369,7 +1369,7 @@ export default {
   Boss_Game_Channel_GameType_QueryAllPost: (): Promise<IChannelTypeResp[]> => {
     return request({
       url: `/boss/game/channel/gameType/queryAll`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -1378,7 +1378,7 @@ export default {
   Boss_Game_Channel_QueryAllPost: (): Promise<IGameChannelSummary[]> => {
     return request({
       url: `/boss/game/channel/queryAll`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -1402,7 +1402,7 @@ export default {
     return request({
       url: `/boss/game/channel/queryDetail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1424,7 +1424,7 @@ export default {
     return request({
       url: `/boss/game/channel/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1444,7 +1444,7 @@ export default {
     return request({
       url: `/boss/game/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1458,7 +1458,7 @@ export default {
     return request({
       url: `/boss/game/factory/changeLogo`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1467,7 +1467,7 @@ export default {
   Boss_Game_Factory_QueryAllPost: (): Promise<IGameFactorySummary[]> => {
     return request({
       url: `/boss/game/factory/queryAll`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -1488,7 +1488,7 @@ export default {
     return request({
       url: `/boss/game/factory/queryDetail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1510,7 +1510,7 @@ export default {
     return request({
       url: `/boss/game/factory/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1537,7 +1537,7 @@ export default {
     return request({
       url: `/boss/game/getRecord`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1564,7 +1564,7 @@ export default {
     return request({
       url: `/boss/game/record/chessCard`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1584,7 +1584,7 @@ export default {
     return request({
       url: `/boss/game/record/chessCardExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1611,7 +1611,7 @@ export default {
     return request({
       url: `/boss/game/record/chicken`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1631,7 +1631,7 @@ export default {
     return request({
       url: `/boss/game/record/chickenExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1658,7 +1658,7 @@ export default {
     return request({
       url: `/boss/game/record/electron`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1678,7 +1678,7 @@ export default {
     return request({
       url: `/boss/game/record/electronExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1705,7 +1705,7 @@ export default {
     return request({
       url: `/boss/game/record/esport`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1725,7 +1725,7 @@ export default {
     return request({
       url: `/boss/game/record/esportExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1752,7 +1752,7 @@ export default {
     return request({
       url: `/boss/game/record/fish`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1772,7 +1772,7 @@ export default {
     return request({
       url: `/boss/game/record/fishExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1799,7 +1799,7 @@ export default {
     return request({
       url: `/boss/game/record/liveVideo`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1819,7 +1819,7 @@ export default {
     return request({
       url: `/boss/game/record/liveVideoExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1846,7 +1846,7 @@ export default {
     return request({
       url: `/boss/game/record/lottery`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1866,7 +1866,7 @@ export default {
     return request({
       url: `/boss/game/record/lotteryExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1897,7 +1897,7 @@ export default {
     return request({
       url: `/boss/game/record/ordinary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1921,7 +1921,7 @@ export default {
     return request({
       url: `/boss/game/record/ordinaryExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1948,7 +1948,7 @@ export default {
     return request({
       url: `/boss/game/record/sport`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -1968,7 +1968,7 @@ export default {
     return request({
       url: `/boss/game/record/sportExport`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -1987,7 +1987,7 @@ export default {
     return request({
       url: `/boss/game/statistics/channel/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2013,7 +2013,7 @@ export default {
     return request({
       url: `/boss/game/statistics/channel/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2030,7 +2030,7 @@ export default {
     return request({
       url: `/boss/game/statistics/proxy/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2054,7 +2054,7 @@ export default {
     return request({
       url: `/boss/game/statistics/proxy/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2079,7 +2079,7 @@ export default {
     return request({
       url: `/boss/game/statistics/proxy/summary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2099,7 +2099,7 @@ export default {
     return request({
       url: `/boss/game/summary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2114,7 +2114,7 @@ export default {
     return request({
       url: `/boss/game/type/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2128,7 +2128,7 @@ export default {
     return request({
       url: `/boss/game/type/delete`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2137,7 +2137,7 @@ export default {
   Boss_Game_Type_GameMainTypeListPost: (): Promise<IGameMainTypeResp[]> => {
     return request({
       url: `/boss/game/type/gameMainTypeList`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -2150,7 +2150,7 @@ export default {
     return request({
       url: `/boss/game/type/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2166,7 +2166,7 @@ export default {
     return request({
       url: `/boss/game/type/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2188,7 +2188,7 @@ export default {
     return request({
       url: `/boss/operate/getAchieving`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2214,7 +2214,7 @@ export default {
     return request({
       url: `/boss/operate/getAchievingConditions`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2228,7 +2228,7 @@ export default {
     return request({
       url: `/boss/payment/channel/allocation`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2242,7 +2242,7 @@ export default {
     return request({
       url: `/boss/payment/channel/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2260,11 +2260,13 @@ export default {
       bizType: string //业务类型 
     }
   */
-  Boss_Payment_Channel_QueryPaymentChannelOrderPost: (data: IBosspaymentchannelqueryPaymentChannelOrderQueryParams = {}): Promise<IQueryOrderBizResp> => {
+  Boss_Payment_Channel_QueryPaymentChannelOrderPost: (
+    data: IBosspaymentchannelqueryPaymentChannelOrderQueryParams = {}
+  ): Promise<IQueryOrderBizResp> => {
     return request({
       url: `/boss/payment/channel/queryPaymentChannelOrder`,
       method: "POST",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2278,7 +2280,7 @@ export default {
     return request({
       url: `/boss/payment/channel/queryProxyList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2293,7 +2295,7 @@ export default {
     return request({
       url: `/boss/payment/channel/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2315,7 +2317,7 @@ export default {
     return request({
       url: `/boss/proxy/area/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2329,7 +2331,7 @@ export default {
     return request({
       url: `/boss/proxy/area/offline`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2343,7 +2345,7 @@ export default {
     return request({
       url: `/boss/proxy/area/online`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2376,7 +2378,7 @@ export default {
     return request({
       url: `/boss/proxy/area/queryDetail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2399,7 +2401,7 @@ export default {
     return request({
       url: `/boss/proxy/area/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2422,7 +2424,7 @@ export default {
     return request({
       url: `/boss/proxy/area/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2435,7 +2437,7 @@ export default {
     return request({
       url: `/boss/proxy/currency/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2449,7 +2451,7 @@ export default {
     return request({
       url: `/boss/proxy/factory/disable`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2462,7 +2464,7 @@ export default {
     return request({
       url: `/boss/proxy/factory/disable/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2475,7 +2477,7 @@ export default {
     return request({
       url: `/boss/proxy/factory/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2489,7 +2491,7 @@ export default {
     return request({
       url: `/boss/proxy/game/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2503,7 +2505,7 @@ export default {
     return request({
       url: `/boss/proxy/game/addChoice`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2516,7 +2518,7 @@ export default {
     return request({
       url: `/boss/proxy/game/getChoice`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2529,7 +2531,7 @@ export default {
     return request({
       url: `/boss/proxy/game/offline`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2542,7 +2544,7 @@ export default {
     return request({
       url: `/boss/proxy/game/online`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2556,7 +2558,7 @@ export default {
     return request({
       url: `/boss/proxy/game/queryAreaGame`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2572,7 +2574,7 @@ export default {
     return request({
       url: `/boss/proxy/game/queryGameByCurrency`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2597,7 +2599,7 @@ export default {
     return request({
       url: `/boss/proxy/game/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2610,7 +2612,7 @@ export default {
     return request({
       url: `/boss/proxy/game/queryProxyGame`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2625,7 +2627,7 @@ export default {
     return request({
       url: `/boss/proxy/game/updateArea`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2640,7 +2642,7 @@ export default {
     return request({
       url: `/boss/proxy/game/updateChoiceGame`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2655,7 +2657,7 @@ export default {
     return request({
       url: `/boss/proxy/game/updateGame`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2670,7 +2672,7 @@ export default {
     return request({
       url: `/boss/proxy/game/updatePopular`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2683,7 +2685,7 @@ export default {
     return request({
       url: `/boss/rebate/plan/queryItems`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2706,7 +2708,7 @@ export default {
     return request({
       url: `/boss/rebate/plan/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2719,7 +2721,7 @@ export default {
     return request({
       url: `/boss/rebate/plan/queryVipList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2740,7 +2742,7 @@ export default {
     return request({
       url: `/boss/rebate/record/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2768,7 +2770,7 @@ export default {
     return request({
       url: `/boss/rebate/record/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2792,7 +2794,7 @@ export default {
     return request({
       url: `/boss/settle/agent`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2809,7 +2811,7 @@ export default {
     return request({
       url: `/boss/settle/agent/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2832,7 +2834,7 @@ export default {
     return request({
       url: `/boss/settle/platform`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2848,7 +2850,7 @@ export default {
     return request({
       url: `/boss/settle/platform/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2871,7 +2873,7 @@ export default {
     return request({
       url: `/boss/settle/proxy`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2887,7 +2889,7 @@ export default {
     return request({
       url: `/boss/settle/proxy/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2900,7 +2902,7 @@ export default {
     return request({
       url: `/boss/settle/settled`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2919,7 +2921,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -2935,7 +2937,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/delete`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2951,7 +2953,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/delete`,
       method: "POST",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2960,7 +2962,7 @@ export default {
   Boss_System_Dictionary_GetAllGet: (): Promise<IDictionarySimpleVo[]> => {
     return request({
       url: `/boss/system/dictionary/getAll`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -2973,7 +2975,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/getByField`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -2998,7 +3000,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/getById`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3020,7 +3022,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/queryPaging`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3040,7 +3042,7 @@ export default {
     return request({
       url: `/boss/system/dictionary/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3063,7 +3065,7 @@ export default {
     return request({
       url: `/boss/system/menu/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3079,7 +3081,7 @@ export default {
     return request({
       url: `/boss/system/menu/delete`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3095,7 +3097,7 @@ export default {
     return request({
       url: `/boss/system/menu/delete`,
       method: "POST",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3104,7 +3106,7 @@ export default {
   Boss_System_Menu_QueryAllGet: (): Promise<IMenuResponseVo[]> => {
     return request({
       url: `/boss/system/menu/queryAll`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -3128,7 +3130,7 @@ export default {
     return request({
       url: `/boss/system/menu/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3143,7 +3145,7 @@ export default {
     return request({
       url: `/boss/system/role/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3157,7 +3159,7 @@ export default {
     return request({
       url: `/boss/system/role/authorizeMenu`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3171,7 +3173,7 @@ export default {
     return request({
       url: `/boss/system/role/changeLock`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3187,7 +3189,7 @@ export default {
     return request({
       url: `/boss/system/role/delete`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3203,7 +3205,7 @@ export default {
     return request({
       url: `/boss/system/role/delete`,
       method: "POST",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3212,7 +3214,7 @@ export default {
   Boss_System_Role_QueryAllGet: (): Promise<IJiaoSeXiangYingXinXi[]> => {
     return request({
       url: `/boss/system/role/queryAll`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -3234,7 +3236,7 @@ export default {
     return request({
       url: `/boss/system/role/queryById`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3257,7 +3259,7 @@ export default {
     return request({
       url: `/boss/system/role/queryDetail`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3280,7 +3282,7 @@ export default {
     return request({
       url: `/boss/system/role/queryPaging`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3296,7 +3298,7 @@ export default {
     return request({
       url: `/boss/system/role/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3317,7 +3319,7 @@ export default {
     return request({
       url: `/boss/system/user/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3331,7 +3333,7 @@ export default {
     return request({
       url: `/boss/system/user/authorizeRole`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3344,7 +3346,7 @@ export default {
     return request({
       url: `/boss/system/user/bindGoogle`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3358,7 +3360,7 @@ export default {
     return request({
       url: `/boss/system/user/changeLock`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3373,7 +3375,7 @@ export default {
     return request({
       url: `/boss/system/user/changePassword`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3386,7 +3388,7 @@ export default {
     return request({
       url: `/boss/system/user/delete`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3399,7 +3401,7 @@ export default {
   Boss_System_User_GetGoogleSecretGet: (): Promise<IGoogleSecretResp> => {
     return request({
       url: `/boss/system/user/getGoogleSecret`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -3412,7 +3414,7 @@ export default {
     return request({
       url: `/boss/system/user/getRole`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3425,7 +3427,7 @@ export default {
   Boss_System_User_GetRoleMenuGet: (): Promise<IUserRoleMenuVo> => {
     return request({
       url: `/boss/system/user/getRoleMenu`,
-      method: "GET",
+      method: "GET"
     });
   },
   /**
@@ -3451,7 +3453,7 @@ export default {
     return request({
       url: `/boss/system/user/queryById`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -3474,7 +3476,7 @@ export default {
     return request({
       url: `/boss/system/user/queryPaging`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3487,7 +3489,7 @@ export default {
     return request({
       url: `/boss/system/user/unbindGoogle`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3508,7 +3510,7 @@ export default {
     return request({
       url: `/boss/system/user/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3532,7 +3534,7 @@ export default {
     return request({
       url: `/boss/user/bankCard/detail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3550,7 +3552,7 @@ export default {
     return request({
       url: `/boss/user/bankCard/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3563,7 +3565,7 @@ export default {
     return request({
       url: `/boss/user/bankCards`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3578,7 +3580,7 @@ export default {
     return request({
       url: `/boss/user/disableUser`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3588,7 +3590,7 @@ export default {
     return request({
       url: `/boss/user/disableUser/batch`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3603,7 +3605,7 @@ export default {
     return request({
       url: `/boss/user/enableUser`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3613,7 +3615,7 @@ export default {
     return request({
       url: `/boss/user/enableUser/batch`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3627,7 +3629,7 @@ export default {
     return request({
       url: `/boss/user/forbiddenUser`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3654,7 +3656,7 @@ export default {
     return request({
       url: `/boss/user/gameRecord`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3669,7 +3671,7 @@ export default {
     return request({
       url: `/boss/user/label/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3683,7 +3685,7 @@ export default {
     return request({
       url: `/boss/user/match`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3701,7 +3703,7 @@ export default {
     return request({
       url: `/boss/user/proxy/add`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3715,7 +3717,7 @@ export default {
     return request({
       url: `/boss/user/proxy/addDomain`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3729,7 +3731,7 @@ export default {
     return request({
       url: `/boss/user/proxy/config/currency`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3742,7 +3744,7 @@ export default {
     return request({
       url: `/boss/user/proxy/offlineDomain`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3755,7 +3757,7 @@ export default {
     return request({
       url: `/boss/user/proxy/onlineDomain`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3764,7 +3766,7 @@ export default {
   Boss_User_Proxy_QueryAllPost: (): Promise<IProxySummaryResp[]> => {
     return request({
       url: `/boss/user/proxy/queryAll`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -3789,7 +3791,7 @@ export default {
     return request({
       url: `/boss/user/proxy/queryProxy`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3802,7 +3804,7 @@ export default {
     return request({
       url: `/boss/user/proxy/queryProxyDomain`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3817,7 +3819,7 @@ export default {
     return request({
       url: `/boss/user/proxy/updateDomain`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3832,7 +3834,7 @@ export default {
     return request({
       url: `/boss/user/proxy/updateProxy`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3850,7 +3852,7 @@ export default {
     return request({
       url: `/boss/user/query`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3875,7 +3877,7 @@ export default {
     return request({
       url: `/boss/user/queryDataSummary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3924,7 +3926,7 @@ export default {
     return request({
       url: `/boss/user/queryDetail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3956,7 +3958,7 @@ export default {
     return request({
       url: `/boss/user/queryList`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3978,7 +3980,7 @@ export default {
     return request({
       url: `/boss/user/queryLog`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -3993,7 +3995,7 @@ export default {
     return request({
       url: `/boss/user/reminder/update`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4008,7 +4010,7 @@ export default {
     return request({
       url: `/boss/user/resetPassword`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4023,7 +4025,7 @@ export default {
     return request({
       url: `/boss/user/statistics/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -4035,7 +4037,7 @@ export default {
   Boss_User_Statistics_InfoPost: (): Promise<IUserStatisticsInfoResp> => {
     return request({
       url: `/boss/user/statistics/info`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -4050,7 +4052,7 @@ export default {
     return request({
       url: `/boss/user/statistics/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4077,7 +4079,7 @@ export default {
     return request({
       url: `/boss/user/team`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4094,7 +4096,7 @@ export default {
     return request({
       url: `/boss/winnings/record/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -4120,7 +4122,7 @@ export default {
     return request({
       url: `/boss/winnings/record/page`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4145,7 +4147,7 @@ export default {
     return request({
       url: `/boss/winnings/record/statistic`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4164,7 +4166,7 @@ export default {
   Boss_Withdraw_Config_GetDigital_$chain$Post: (code: string = ""): Promise<IWithdrawInfoResp> => {
     return request({
       url: `/boss/withdraw/config/getDigital/${code}`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -4183,7 +4185,7 @@ export default {
   Boss_Withdraw_Config_GetLeger_$currencyCode$Post: (code: string = ""): Promise<IWithdrawInfoResp> => {
     return request({
       url: `/boss/withdraw/config/getLeger/${code}`,
-      method: "POST",
+      method: "POST"
     });
   },
   /**
@@ -4203,7 +4205,7 @@ export default {
     return request({
       url: `/boss/withdraw/config/setDigital`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4223,7 +4225,7 @@ export default {
     return request({
       url: `/boss/withdraw/config/setLeger`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4237,7 +4239,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/checkPass`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4252,7 +4254,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/checkRefuse`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4276,7 +4278,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/exportExcel`,
       method: "GET",
-      params: data,
+      params: data
     });
   },
   /**
@@ -4291,7 +4293,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/fail`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4304,7 +4306,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/getCard`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4335,7 +4337,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/list`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4349,7 +4351,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/manualReTryWithdraw`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4363,7 +4365,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/success`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4383,7 +4385,7 @@ export default {
     return request({
       url: `/boss/withdraw/digital/summary`,
       method: "POST",
-      data,
+      data
     });
   },
   /**
@@ -4397,9 +4399,9 @@ export default {
     return request({
       url: `/boss/withdraw/digital/withdrawConfirm`,
       method: "POST",
-      data,
+      data
     });
-  },
+  }
 };
 
 interface IAccountCurrentTotalResp {

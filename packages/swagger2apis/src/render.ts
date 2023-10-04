@@ -1,30 +1,24 @@
 /**
  * 负责将数据与模板结合完成渲染
  */
-import fs from "fs";
-import { firstUpperCase, getCurrentDirName } from "@swagger2apis/utils";
-import { transform } from "./transform.ts";
+import { firstUpperCase, pipeAsync } from "@panda/utils";
 import { Eta } from "eta";
-import path from "node:path";
+import { transform } from "./transform.ts";
 
-const eta = new Eta({ views: path.join(getCurrentDirName(import.meta.url), "./template") });
-
-export const getRenderData = (rawJSON) => {
+export const getRenderData = async (rawJSON, ctx) => {
   const data = transform(rawJSON);
-  fs.writeFileSync("./snapshot.json", JSON.stringify(data));
-  return data;
+  const { plugins } = ctx;
+  const { data: dataPatched } = await pipeAsync(plugins.transformed)({ rawJSON, data });
+  return dataPatched;
 };
 
-export const render = (rawJSON: any, template: string): string => {
-  const renderData = getRenderData(rawJSON);
+export const render = async (rawJSON: any, eta: Eta, ctx): Promise<string> => {
+  const renderData = await getRenderData(rawJSON, ctx);
   const { apis, interfaces } = renderData;
-  renderApis(apis, interfaces);
-  // renderInterfaces(interfaces);
-  return "";
+  return await renderApis(apis, interfaces, eta, ctx);
 };
 
-const renderApis = (apis, interfaces) => {
-  // 额外的类型定义
+const renderApis = async (apis, interfaces, eta, ctx) => {
   const apisData = apis.map((api) => {
     const { helpInfo } = api;
     const fnName = renderReqFnName(api);
@@ -34,23 +28,6 @@ const renderApis = (apis, interfaces) => {
     const path = renderPath(api);
     const method = renderMethod(api);
 
-    // 找出对应的类型定义
-    const apiInterfaces = interfaces.filter((node) => {
-      // console.log(node)
-      // console.log("responseType", responseType);
-      // console.log("node.interfaceName", node.interfaceName);
-      if (node.interfaceName === responseType) {
-        node.pos = "res =>>";
-        return true;
-      }
-      if (node.interfaceName === paramsInfo.type) {
-        node.pos = "req =>>";
-        return true;
-      }
-    });
-
-    console.log(interfaces.find((n) => n.interfaceName === "IAllocationPaymentChannelReq"));
-
     return {
       helpInfo,
       fnName,
@@ -59,12 +36,17 @@ const renderApis = (apis, interfaces) => {
       responseType,
       path,
       method,
-      interfaces: apiInterfaces,
-      raw: api,
+      raw: api
     };
   });
-  const apiRes = eta.render("./apis", { apisData, interfaces });
-  fs.writeFileSync("./snapshot_apis.ts", apiRes);
+  const { plugins } = ctx;
+
+  const { apisData: apisDataPatched, interfaces: interfacesPatched } = await pipeAsync(plugins.befofeRender)({
+    apisData,
+    interfaces
+  });
+
+  return eta.render("./apis", { apisData: apisDataPatched, interfaces: interfacesPatched });
 };
 
 // 渲染请求函数方法名

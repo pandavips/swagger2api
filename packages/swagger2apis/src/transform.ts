@@ -2,7 +2,7 @@
  * 转换层,负责将json数据收集整理成方便模板渲染的数据
  */
 
-import { chineseCharacter2pinyin, isString, removeSpecialCharacter } from "@swagger2apis/utils";
+import { chineseCharacter2pinyin, isString, removeSpecialCharacter } from "@panda/utils";
 import { JavaType2JavaScriptType } from "./dict.ts";
 
 let currentApi: any = null;
@@ -19,18 +19,18 @@ export const transform = (rawJSON) => {
   return {
     apis,
     interfaces,
-    raw: rawJSON,
+    raw: rawJSON
   };
 };
 
 // 生成接口数据
-export const generateApis = (paths: Object): any[] => {
+export const generateApis = (paths: any): any[] => {
   return Reflect.ownKeys(paths)
     .map((path) => {
       const pathData = paths[path];
       return genApiProps({
         path,
-        pathData,
+        pathData
       });
     })
     .flat();
@@ -55,11 +55,11 @@ const genApiProps = (data) => {
       // 载荷类型
       payloadType: {
         request: null,
-        response: resolveResponese(responses),
+        response: resolveResponese(responses)
       },
       // 辅助信息
       helpInfo: null,
-      raw: data,
+      raw: data
     });
     const { parameters, helpInfo } = resolveParameters(methodDataParameters);
 
@@ -85,8 +85,8 @@ const resolveParameters = (rawParameters) => {
       // 是否存在表单参数
       hasFormDataParameter: false,
       // 是否存在header参数
-      hasHeaderParameter: false,
-    },
+      hasHeaderParameter: false
+    }
   };
   rawParameters.forEach((p) => {
     const parameterRes: any = {
@@ -96,7 +96,7 @@ const resolveParameters = (rawParameters) => {
       required: false,
       // 参数位置
       pos: null,
-      raw: p,
+      raw: p
     };
     // 参数位置 path|query|body|formData|header
     const { in: pos, name: pName = "", required, description, schema } = p;
@@ -116,8 +116,8 @@ const resolveParameters = (rawParameters) => {
       case "query":
         if (result.helpInfo.hasQueryParameter) break;
         result.helpInfo.hasQueryParameter = true;
-        const queryProps = coverQueryParameters2Bodyfit(rawParameters.filter((p) => p.in === "query"));
-        parameterRes.interfaceName = queryParamsHandler(queryProps); // query参数汇总处理
+        // query参数汇总处理
+        parameterRes.interfaceName = queryParamsHandler(coverQueryParameters2Bodyfit(rawParameters.filter((p: any) => p.in === "query")));
         break;
       case "formData":
         result.helpInfo.hasFormDataParameter = true;
@@ -147,7 +147,7 @@ const queryParamsHandler = (queryProps) => {
     interfaceName,
     props,
     description,
-    raw: { props, currentApi },
+    raw: { props, currentApi }
   });
 
   (generateDefinitions as any).addInterface(template);
@@ -163,7 +163,7 @@ const resolveResponese = (responses) => {
   const res: any = {
     description: "",
     interfaceName: null,
-    raw: okData,
+    raw: okData
   };
 
   if (!okData) return null;
@@ -174,7 +174,7 @@ const resolveResponese = (responses) => {
 };
 
 // 生成类型定义数据
-export const generateDefinitions = (definitions: Object): any[] => {
+export const generateDefinitions = (definitions: any): any[] => {
   const interfaceList = Reflect.ownKeys(definitions).map((key) => {
     const raw = definitions[key];
 
@@ -184,7 +184,7 @@ export const generateDefinitions = (definitions: Object): any[] => {
       interfaceName: null,
       props: [],
       description: description || "接口文档没有提供描述",
-      raw,
+      raw
     });
 
     // 类型名称
@@ -210,18 +210,18 @@ const createPropsInfoTemplate = (props = {}): any => {
     // 描述
     description: null,
     raw: null,
-    ...props,
+    ...props
   };
   return {
     coverProps: (converProps) => {
       return Object.assign(template, converProps);
     },
-    template,
+    template
   };
 };
 
 // 转换query参数到body props格式,避免写两套逻辑
-const coverQueryParameters2Bodyfit = (parameters) => {
+const coverQueryParameters2Bodyfit = (parameters: any) => {
   const res = {};
   parameters.forEach((p) => {
     res[p.name] = p;
@@ -244,7 +244,7 @@ export const resolveProperties = (properties: any, requiredProps: string[] = [])
       // 类型
       interfaceName: "",
       // 是否必填
-      required: !allowEmptyValue || requiredProps.includes(propName as string),
+      required: !allowEmptyValue || requiredProps.includes(propName as string)
     };
     // 数组类型
     if (items) {

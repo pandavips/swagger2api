@@ -7,5 +7,5 @@ export const JavaType2JavaScriptType = {
   array: "array",
   object: "object",
   timestamp: "string",
-  any: "any",
+  any: "any"
 };
