@@ -1,5 +1,5 @@
 import Pinyin from "pinyin";
-import path from "path";
+import path from "node:path";
 import url from "node:url";
 
 // 判断是否是对象

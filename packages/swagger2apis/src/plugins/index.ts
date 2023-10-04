@@ -1,2 +1,2 @@
-export * from "./ApiTypeInDescription.ts";
-export * from "./CodeFormatter.ts";
+export * from "./ApiTypeInDescription";
+export * from "./CodeFormatter";

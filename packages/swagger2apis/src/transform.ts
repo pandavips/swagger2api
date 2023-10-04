@@ -3,7 +3,7 @@
  */
 
 import { chineseCharacter2pinyin, isString, removeSpecialCharacter } from "@panda/utils";
-import { JavaType2JavaScriptType } from "./dict.ts";
+import { JavaType2JavaScriptType } from "./dict";
 
 let currentApi: any = null;
 // 入口

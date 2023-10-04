@@ -1,6 +1,6 @@
 {
   "name": "swagger2apis",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "description": "swagger转api工具",
   "packageManager": "pnpm@7.1.0",
   "type": "module",
@@ -21,14 +21,39 @@
   "files": [
     "dist"
   ],
-  "scripts": {},
+  "scripts": {
+    "build": "rollup -c",
+    "build-watch": "rollup -c --watch",
+    "publish": "npm publish"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pandavips/swagger2api/issues",
     "email": "919401990@qq.com"
   },
+  "peerDependencies": {
+    "axios": "*",
+    "pinyin": "~2.11.2",
+    "typescript": "*",
+    "eta": "^3.1.1"
+  },
   "dependencies": {
     "@panda/utils": "workspace:^",
     "eta": "^3.1.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.13",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "@rollup/plugin-commonjs": "^25.0.0",
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-typescript": "^8.4.0",
+    "rollup": "^2.79.1",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-terser": "^7.0.2",
+    "tslib": "^2.6.2"
   }
 }

@@ -5,6 +5,7 @@
     "api",
     "panda-ext"
   ],
+  "private": "true",
   "author": "pandavips",
   "repository": {
     "type": "git",
@@ -15,19 +16,23 @@
     "dist"
   ],
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "prepare": "husky install",
     "cz": "cz",
     "lint:fix": "eslint ./packages/**/* --fix --ext .ts,.js,.json --max-warnings=0",
     "format": "prettier --config .prettierrc --write packages/**/*",
     "commitlint:run": "commitlint -e",
-    "lint-staged:run": "lint-staged"
+    "lint-staged:run": "lint-staged",
+    "changeset": "changeset",
+    "version-packages": "changeset version"
   },
   "license": "ISC",
   "devDependencies": {
-    "@tsconfig/node16": "^16.1.1",
-    "@types/node": "^20.8.0",
+    "@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
+    "@tsconfig/node16": "^16.1.1",
+    "@types/node": "^20.8.0",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
     "commitizen": "^4.3.0",
@@ -46,7 +51,6 @@
     "email": "919401990@qq.com"
   },
   "dependencies": {
-    "axios": "^1.5.1",
-    "prettier": "^3.0.3"
+    "axios": "^1.5.1"
   }
 }

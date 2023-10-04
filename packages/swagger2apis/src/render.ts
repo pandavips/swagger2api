@@ -3,7 +3,7 @@
  */
 import { firstUpperCase, pipeAsync } from "@panda/utils";
 import { Eta } from "eta";
-import { transform } from "./transform.ts";
+import { transform } from "./transform";
 
 export const getRenderData = async (rawJSON, ctx) => {
   const data = transform(rawJSON);

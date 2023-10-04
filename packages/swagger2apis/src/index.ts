@@ -1,10 +1,11 @@
-import { getCurrentDirName, isHttpUrl, pipeAsync, writeFile } from "@panda/utils";
+import { getCurrentDirName, isHttpUrl, pipeAsync, writeFile, isObject } from "@panda/utils";
+export { getCurrentDirName } from "@panda/utils";
 import axios from "axios";
 import { Eta } from "eta";
 import path from "node:path";
-import { createPlugins } from "./plugin.ts";
-import { render } from "./render.ts";
-export * from "./plugins/index.ts";
+import { createPlugins } from "./plugin";
+import { render } from "./render";
+export * from "./plugins/index";
 
 interface ICompileConfig {
   target: "js" | "ts";
@@ -26,6 +27,7 @@ export const createSwagger2apis = (config: Config) => {
   return {
     // 注册插件
     use: (plugin) => {
+      if (!isObject(plugin)) throw new Error("请传入一个插件对象");
       Reflect.ownKeys(plugin).forEach((lifeCycle) => plugins[lifeCycle].push(plugin[lifeCycle]));
     },
     run: async () => {
@@ -35,9 +37,11 @@ export const createSwagger2apis = (config: Config) => {
         apiJson,
         config
       });
-      const eta = new Eta({
+
+      const eta = new (Eta as any)({
         views: configPatched.templatePath || path.join(getCurrentDirName(import.meta.url), "./template")
       });
+
       const apiFileContent = await render(apiJsonPatched, eta, { plugins });
 
       const apiFileContentPatched = await pipeAsync(plugins.beforeWriteFile)(apiFileContent);

@@ -1,36 +1,4 @@
 {
-	// "extends": "@tsconfig/node16/tsconfig.json",
-	"compilerOptions": {
-		"composite": true,
-		"incremental": true,
-		"noEmit": true,
-		"allowImportingTsExtensions": true,
-		"target": "ESNext",
-		"module": "ESNext",
-		"esModuleInterop": true,
-		"resolveJsonModule": true,
-		"moduleResolution": "node",
-		"forceConsistentCasingInFileNames": true,
-		"strict": true,
-		"noImplicitAny": false,
-		"skipLibCheck": true,
-		"sourceMap": false,
-		"newLine": "LF",
-		"useDefineForClassFields": false,
-		"allowJs": false,
-		"noUnusedLocals": true,
-		"experimentalDecorators": true,
-		"isolatedModules": true,
-		"removeComments": false,
-		"baseUrl": "./",
-		"rootDir": "."
-	},
-	"paths": {},
-	"include": ["packages/*/src"],
-	"ts-node": {
-		"esm": true,
-		"transpileOnly": true,
-		"files": true,
-		"compilerOptions": {}
-	}
+  "extends": "./tsconfig.base.json",
+  "include": ["packages/*/src"]
 }
