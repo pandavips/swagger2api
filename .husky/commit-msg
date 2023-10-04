@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-pnpm dlx commitlint -e "$1"
+# pnpm run commitlint:run
