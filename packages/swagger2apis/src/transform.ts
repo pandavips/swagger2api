@@ -2,11 +2,10 @@
  * 转换层,负责将json数据收集整理成方便模板渲染的数据
  */
 
-import { chineseCharacter2pinyin, isString, removeSpecialCharacter } from "@panda/utils";
+import { chineseCharacter2pinyin, isString, removeSpecialCharacter } from "@pdcode/utils";
 import { JavaType2JavaScriptType } from "./dict";
 
 let currentApi: any = null;
-// 入口
 export const transform = (rawJSON) => {
   // 我们目前只需要关注两个字段就可以完成所有工作
   // path是接口的核心数据
@@ -298,4 +297,9 @@ const generateTypeName = (schema: any) => {
   else {
     return JavaType2JavaScriptType[type] || JavaType2JavaScriptType["any"] + "[]";
   }
+};
+
+export default (context) => {
+  const rawJSON = context.rawJSON;
+  return transform(rawJSON);
 };

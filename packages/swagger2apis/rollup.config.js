@@ -1,6 +1,5 @@
 import rollupTypescript from "@rollup/plugin-typescript";
-// const { terser } = require("rollup-plugin-terser");
-// import { terser } from "rollup-plugin-terser";
+import { terser } from "rollup-plugin-terser";
 // import dts from "rollup-plugin-dts";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
@@ -33,7 +32,7 @@ export default [
         include: /node_modules/
       }),
       json(),
-      // terser(),
+      terser(),
       // nodeResolve(),
       copy({
         targets: [

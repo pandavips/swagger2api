@@ -72,12 +72,15 @@ importers:
 
   packages/swagger2apis:
     dependencies:
-      '@panda/utils':
+      '@pdcode/utils':
         specifier: workspace:^
         version: link:../utils
       axios:
         specifier: '*'
         version: 1.5.1
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
       eta:
         specifier: ^3.1.1
         version: 3.1.1
@@ -86,6 +89,61 @@ importers:
         version: 2.11.2
       typescript:
         specifier: '*'
+        version: 4.9.5
+    devDependencies:
+      '@babel/core':
+        specifier: ^7.18.13
+        version: 7.23.0
+      '@babel/preset-env':
+        specifier: ^7.18.10
+        version: 7.22.20(@babel/core@7.23.0)
+      '@babel/preset-typescript':
+        specifier: ^7.18.6
+        version: 7.23.0(@babel/core@7.23.0)
+      '@rollup/plugin-commonjs':
+        specifier: ^25.0.0
+        version: 25.0.4(rollup@2.79.1)
+      '@rollup/plugin-json':
+        specifier: ^6.0.0
+        version: 6.0.0(rollup@2.79.1)
+      '@rollup/plugin-node-resolve':
+        specifier: ^13.3.0
+        version: 13.3.0(rollup@2.79.1)
+      '@rollup/plugin-typescript':
+        specifier: ^8.4.0
+        version: 8.5.0(rollup@2.79.1)(tslib@2.6.2)(typescript@4.9.5)
+      rollup:
+        specifier: ^2.79.1
+        version: 2.79.1
+      rollup-plugin-babel:
+        specifier: ^4.4.0
+        version: 4.4.0(@babel/core@7.23.0)(rollup@2.79.1)
+      rollup-plugin-copy:
+        specifier: ^3.4.0
+        version: 3.5.0
+      rollup-plugin-dts:
+        specifier: ^4.2.2
+        version: 4.2.3(rollup@2.79.1)(typescript@4.9.5)
+      rollup-plugin-terser:
+        specifier: ^7.0.2
+        version: 7.0.2(rollup@2.79.1)
+      tslib:
+        specifier: ^2.6.2
+        version: 2.6.2
+
+  packages/utils:
+    dependencies:
+      axios:
+        specifier: ^1.5.1
+        version: 1.5.1
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+      pinyin:
+        specifier: ~2.11.2
+        version: 2.11.2
+      typescript:
+        specifier: ^5.2.2
         version: 5.2.2
     devDependencies:
       '@babel/core':
@@ -128,18 +186,6 @@ importers:
         specifier: ^2.6.2
         version: 2.6.2
 
-  packages/utils:
-    dependencies:
-      axios:
-        specifier: ^1.5.1
-        version: 1.5.1
-      pinyin:
-        specifier: ~2.11.2
-        version: 2.11.2
-      typescript:
-        specifier: ^5.2.2
-        version: 5.2.2
-
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -152,7 +198,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       '@jridgewell/gen-mapping': 0.3.3
-      '@jridgewell/trace-mapping': 0.3.9
+      '@jridgewell/trace-mapping': 0.3.19
     dev: true
 
   /@babel/code-frame@7.22.13:
@@ -1935,6 +1981,24 @@ packages:
       rollup: 2.79.1
     dev: true
 
+  /@rollup/plugin-typescript@8.5.0(rollup@2.79.1)(tslib@2.6.2)(typescript@4.9.5):
+    resolution: {integrity: sha512-wMv1/scv0m/rXx21wD2IsBbJFba8wGF3ErJIr6IKRfRj49S85Lszbxb4DCo8iILpluTjk2GAAu9CoZt4G3ppgQ==}
+    engines: {node: '>=8.0.0'}
+    peerDependencies:
+      rollup: ^2.14.0
+      tslib: '*'
+      typescript: '>=3.7.0'
+    peerDependenciesMeta:
+      tslib:
+        optional: true
+    dependencies:
+      '@rollup/pluginutils': 3.1.0(rollup@2.79.1)
+      resolve: 1.22.6
+      rollup: 2.79.1
+      tslib: 2.6.2
+      typescript: 4.9.5
+    dev: true
+
   /@rollup/plugin-typescript@8.5.0(rollup@2.79.1)(tslib@2.6.2)(typescript@5.2.2):
     resolution: {integrity: sha512-wMv1/scv0m/rXx21wD2IsBbJFba8wGF3ErJIr6IKRfRj49S85Lszbxb4DCo8iILpluTjk2GAAu9CoZt4G3ppgQ==}
     engines: {node: '>=8.0.0'}
@@ -2590,7 +2654,6 @@ packages:
   /chalk@5.3.0:
     resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
-    dev: true
 
   /chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
@@ -4720,7 +4783,7 @@ packages:
     dependencies:
       hosted-git-info: 4.1.0
       is-core-module: 2.13.0
-      semver: 7.5.1
+      semver: 7.5.4
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -5236,6 +5299,20 @@ packages:
       is-plain-object: 3.0.1
     dev: true
 
+  /rollup-plugin-dts@4.2.3(rollup@2.79.1)(typescript@4.9.5):
+    resolution: {integrity: sha512-jlcpItqM2efqfIiKzDB/IKOS9E9fDvbkJSGw5GtK/PqPGS9eC3R3JKyw2VvpTktZA+TNgJRMu1NTv244aTUzzQ==}
+    engines: {node: '>=v12.22.12'}
+    peerDependencies:
+      rollup: ^2.55
+      typescript: ^4.1
+    dependencies:
+      magic-string: 0.26.7
+      rollup: 2.79.1
+      typescript: 4.9.5
+    optionalDependencies:
+      '@babel/code-frame': 7.22.13
+    dev: true
+
   /rollup-plugin-dts@4.2.3(rollup@2.79.1)(typescript@5.2.2):
     resolution: {integrity: sha512-jlcpItqM2efqfIiKzDB/IKOS9E9fDvbkJSGw5GtK/PqPGS9eC3R3JKyw2VvpTktZA+TNgJRMu1NTv244aTUzzQ==}
     engines: {node: '>=v12.22.12'}
@@ -5335,15 +5412,6 @@ packages:
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
-
-  /semver@7.5.1:
-    resolution: {integrity: sha512-Wvss5ivl8TMRZXXESstBA4uR5iXgEN/VC5/sOcuXdVLzcdkz4HWetIoRfG5gb5X+ij/G9rw9YoGn3QoQ8OCSpw==}
-    engines: {node: '>=10'}
-    hasBin: true
-    requiresBuild: true
-    dependencies:
-      lru-cache: 6.0.0
-    dev: true
 
   /semver@7.5.4:
     resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
@@ -5874,6 +5942,11 @@ packages:
       for-each: 0.3.3
       is-typed-array: 1.1.12
     dev: true
+
+  /typescript@4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
 
   /typescript@5.2.2:
     resolution: {integrity: sha512-mI4WrpHsbCIcwT9cF4FZvr80QUeKvsUsUvKDoR+X/7XHQH98xYD8YHZg7ANtz2GtZt/CBq2QJ0thkGJMHfqc1w==}

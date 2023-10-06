@@ -1,58 +1,48 @@
 <%
-const { apisData,interfaces} = it;
+const { apis } = it;
 _%>
-/* eslint-disable */
-// @ts-nocheck
 
-/**
-* 该文件内容由脚本内容生成,如需修改,请修改脚本文件后重新生成
-*/
+export default (request)=>{
+  return {
+<% apis.forEach(function(api,index){ %>
 
-import request from "./request";
+  /**
+      * @description: <%= api.description %>
+  <% if (api.interfaces?.length) { %>
+    <% api.interfaces.forEach(function(interface,index){ %>
 
-export default {
-<% apisData.forEach(function(api,index){ %>
+      <% ~ interface.pos %>
 
-/**
-  * @description: <%= api.description %>
+        <% = interface.interfaceName %> {
+        <% interface.props.forEach(function(prop,i){ %>
+  <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %> // <%_ = prop.description -%>
 
-<% if (api.interfaces?.length) { %>
-  <% api.interfaces.forEach(function(interface,index){ %>
-  <%- ~ interface.pos %>
-  <%- = interface.interfaceName %> {
-    <% interface.props.forEach(function(prop,i){ %>
-  <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %> // <%_ = prop.description -%> 
-    <% }) _%>
-  }
-  <% }) %>
-<% } %>
-*/
-<%= api.fnName %>: (
-<% if (api.paramsInfo.show) { %>
-  <%=api.helpInfo.hasPathParameter?'code':'data' %>
-  :<%= api.paramsInfo.type %>
-  =<%~ api.paramsInfo.defaultVal %>
-<% } %>
-): Promise<<%~ api.responseType %>> => {
-  return request({
-  url: `<%= api.path %>`,
-  method: "<%= api.method %>",
-  <% if (api.helpInfo.hasBodyParameter||api.helpInfo.hasFormDataParameter) { %>
-  data,
+        <% }) _%>
+    }
+    <% }) %>
   <% } %>
-  <% if (api.helpInfo.hasQueryParameter) { %>
-  params:data,
+*/
+  <%= api.fnName %>: (
+  <% if (api.paramsInfo.show) { %>
+    <%=api.helpInfo.hasPathParameter?'code':'data' %>
+    :<%= api.paramsInfo.type %>
+    =<%~ api.paramsInfo.defaultVal %>,
   <% } %>
-  });
-  }<%= index===apisData.length-1?'':',' -%>
-  <% }) %>
+  config={}
+  ): Promise<<%~ api.responseType %>> => {
+    return request({
+    url: `<%= api.path %>`,
+    method: "<%= api.method %>",
+    <% if (api.helpInfo.hasBodyParameter||api.helpInfo.hasFormDataParameter) { %>
+    data,
+    <% } %>
+    <% if (api.helpInfo.hasQueryParameter&&!api.helpInfo.hasPathParameter) { %>
+    params:data,
+    <% } %>
+    ...config
+    });
+    }<%= index===apis.length-1?'':',' -%>
+    <% }) %>
   };
 
-<% interfaces.forEach(function(interface,index){ %>
-interface <%- = interface.interfaceName %> {
-  <% interface.props.forEach(function(prop,i){ %>
-    /** <%_ = prop.description -%> */
-    <% = prop.name %><%= prop.required?'':'?' %>: <%= prop.interfaceName %>;
-  <% }) _%>
 }
-<% }) %>

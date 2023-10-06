@@ -1,22 +1,30 @@
+import type { IPlugin } from "../plugin";
+import { printSuccInfo } from "@pdcode/utils";
+
 /** 在api描述中插入载荷类型描述内容,减少上下翻飞 */
-export const ApiTypeInDescription = {
-  befofeRender: (raw) => {
-    const { apisData, interfaces } = raw;
-    apisData.forEach((apiInfo) => {
+export const ApiTypeInDescription: IPlugin = {
+  befofeRender: (ctx) => {
+    const { renderData } = ctx;
+    const { apis, interfaces } = renderData;
+    ctx.renderData.apis = apis.map((api) => {
       // 找出对应的类型定义
-      const apiInterfaces = interfaces.filter((node) => {
-        if (node.interfaceName === apiInfo.responseType) {
-          node.pos = "res =>>";
+      const apiInterfaces = interfaces.filter((it) => {
+        if (it.interfaceName === api.responseType) {
+          it.pos = "res =>>";
           return true;
         }
-        if (node.interfaceName === apiInfo.paramsInfo.type) {
-          node.pos = "req =>>";
+        if (it.interfaceName === api.paramsInfo.type) {
+          it.pos = "req =>>";
           return true;
         }
       });
       // 将类型挂载到api信息上
-      apiInfo.interfaces = apiInterfaces;
+      api.interfaces = apiInterfaces;
+
+      return api;
     });
-    return raw;
+
+    printSuccInfo("ApiTypeInDescription插件已经完成载荷类型描述数据的插入~");
+    return ctx;
   }
 };

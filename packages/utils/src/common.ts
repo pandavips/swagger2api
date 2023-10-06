@@ -1,6 +1,4 @@
 import Pinyin from "pinyin";
-import path from "node:path";
-import url from "node:url";
 
 // 判断是否是对象
 export const isObject = (obj: any) => {
@@ -44,11 +42,6 @@ export const chineseCharacter2pinyin = (character: string) => {
 // 去除字符串中所有特殊字符
 export const removeSpecialCharacter = (str: string) => {
   return str.replace(/[^\w\s]/gi, "");
-};
-
-// 在esm中获取当前目录
-export const getCurrentDirName = (importMetaUrl = import.meta.url) => {
-  return path.dirname(url.fileURLToPath(importMetaUrl));
 };
 
 // 判断是否是一个http url

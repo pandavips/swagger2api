@@ -1,8 +1,9 @@
 {
   "name": "swagger2apis-demo",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "index.js",
+  "private": "true",
   "scripts": {
     "giveMeApis": "node ./index.mjs"
   },

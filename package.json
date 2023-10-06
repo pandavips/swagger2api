@@ -24,7 +24,8 @@
     "commitlint:run": "commitlint -e",
     "lint-staged:run": "lint-staged",
     "changeset": "changeset",
-    "version-packages": "changeset version"
+    "version-packages": "changeset version",
+    "publish": "pnpm changeset publish"
   },
   "license": "ISC",
   "devDependencies": {

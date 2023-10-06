@@ -1,25 +1,16 @@
 /**
  * 负责将数据与模板结合完成渲染
  */
-import { firstUpperCase, pipeAsync } from "@panda/utils";
-import { Eta } from "eta";
-import { transform } from "./transform";
+import { firstUpperCase } from "@pdcode/utils";
+import { IContext } from "./app";
 
-export const getRenderData = async (rawJSON, ctx) => {
-  const data = transform(rawJSON);
-  const { plugins } = ctx;
-  const { data: dataPatched } = await pipeAsync(plugins.transformed)({ rawJSON, data });
-  return dataPatched;
+export const getRenderData = (transformEdJson: any) => {
+  const { apis: apisData, interfaces } = transformEdJson;
+  return { apis: renderApis(apisData), interfaces };
 };
 
-export const render = async (rawJSON: any, eta: Eta, ctx): Promise<string> => {
-  const renderData = await getRenderData(rawJSON, ctx);
-  const { apis, interfaces } = renderData;
-  return await renderApis(apis, interfaces, eta, ctx);
-};
-
-const renderApis = async (apis, interfaces, eta, ctx) => {
-  const apisData = apis.map((api) => {
+const renderApis = (apisData) => {
+  return apisData.map((api) => {
     const { helpInfo } = api;
     const fnName = renderReqFnName(api);
     const description = renderApiDescription(api);
@@ -39,14 +30,6 @@ const renderApis = async (apis, interfaces, eta, ctx) => {
       raw: api
     };
   });
-  const { plugins } = ctx;
-
-  const { apisData: apisDataPatched, interfaces: interfacesPatched } = await pipeAsync(plugins.befofeRender)({
-    apisData,
-    interfaces
-  });
-
-  return eta.render("./apis", { apisData: apisDataPatched, interfaces: interfacesPatched });
 };
 
 // 渲染请求函数方法名
@@ -55,7 +38,7 @@ export const renderReqFnName = (api) => {
   const { hasPathParameter } = helpInfo;
   let path = api.path;
   hasPathParameter && (path = api.path.replaceAll(/[{}]/g, "$"));
-  return path.split("/").slice(1).map(firstUpperCase).join("_") + firstUpperCase(api.method);
+  return path.split("/").slice(1).map(firstUpperCase).join("_") + api.method.toUpperCase();
 };
 
 // 渲染api描述
@@ -114,3 +97,10 @@ export const renderPath = (api) => {
 function renderMethod(api: any) {
   return api.method.toUpperCase();
 }
+
+export default async (ctx: IContext) => {
+  const { transformEdJson, plugins } = ctx;
+  const { renderFn } = plugins;
+  ctx.renderData = getRenderData(transformEdJson);
+  return renderFn(ctx);
+};

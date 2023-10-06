@@ -1,18 +1,71 @@
-/**
- * 生命周期
- * created:流程执行前,主要可以对配置以及原始json数据进行一些修改
- * transformed:这个时候转换层数据已经处理完成,你可以对数据继续进行修改
- * befofeRender:对数据进行渲染前,你可以对渲染数据进行修改,如果更改了数据结构，那么你应该对模板也进行配套的修改
- * beforeWriteFile:文件写入前,此时你可以对输出的字符进行修改，比如格式化一些东西
- */
+import { isObject, pipeAsync } from "@pdcode/utils";
+import { renderByEta } from "./plugins/Render";
+import type { IContext } from "./app";
+
+export interface IPlugin {
+  // 数据集进行转换前
+  beforeTransform?: (context: IContext) => any;
+  // 数据集进行转换后
+  afterTransform?: (context: IContext) => any;
+  // 数据进行渲染前
+  befofeRender?: (context: IContext) => any;
+  // 数据进行渲染后
+  afterRender?: (context: IContext) => any;
+  // 文件写入前
+  beforeWriteFile?: (context: IContext) => any;
+  // 文件写入后
+  afterWriteFile?: (context: IContext) => any;
+}
+export interface IPlugins {
+  beforeTransform: IPlugin[];
+  afterTransform: IPlugin[];
+  befofeRender: IPlugin[];
+  afterRender: IPlugin[];
+  beforeWriteFile: IPlugin[];
+  afterWriteFile: IPlugin[];
+  renderFn: RednerFn;
+}
+
+export interface IRenderFnRetureTypeItem {
+  content: string;
+  extName: string;
+  fileName: string;
+}
+export type IRenderFnRetureType = IRenderFnRetureTypeItem[];
+export type RednerFn = (context: IContext) => Promise<IRenderFnRetureType>;
+
+// 执行插件
+export const pluginRun = async (ctx: IContext, lifeCycleName) => {
+  return ctx.plugins[lifeCycleName]?.length && (await pipeAsync(ctx.plugins[lifeCycleName])(ctx));
+};
 
 // 创建一个插件容器
-export const createPlugins = (plugins: any = {}) => {
-  // 应该使用数组,而不是set,因为可能会遇到需要执行两次相同逻辑的情况
+export const createPlugins = () => {
+  const plugins: IPlugins = {
+    beforeTransform: [],
+    afterTransform: [],
+    befofeRender: [],
+    afterRender: [],
+    beforeWriteFile: [],
+    afterWriteFile: [],
+    renderFn: async (ctx) => {
+      await pluginRun(ctx, "befofeRender");
+      return renderByEta(ctx);
+    }
+  };
+
   return {
-    created: [...(plugins.created ? plugins.created : [])],
-    transformed: [...(plugins.transformed ? plugins.transformed : [])],
-    befofeRender: [...(plugins.befofeRender ? plugins.befofeRender : [])],
-    beforeWriteFile: [...(plugins.beforeWriteFile ? plugins.beforeWriteFile : [])]
+    // 注册插件api
+    register: (plugin) => {
+      if (!isObject(plugin)) throw new Error("请传入一个插件对象");
+      Reflect.ownKeys(plugin).forEach((lifeCycle) => plugins[lifeCycle].push(plugin[lifeCycle]));
+    },
+    setRender: (renderFn: RednerFn) => {
+      plugins.renderFn = async (ctx) => {
+        await pluginRun(ctx, "befofeRender");
+        return renderFn(ctx);
+      };
+    },
+    plugins
   };
 };
