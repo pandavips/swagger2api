@@ -1,5 +1,16 @@
 # swagger2apis
 
+## 2.2.0
+
+### Minor Changes
+
+- 已经coding到可以投入生产了
+
+### Patch Changes
+
+- Updated dependencies
+  - @pdcode/utils@2.1.0
+
 ## 2.1.2
 
 ### Patch Changes
