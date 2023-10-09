@@ -1,5 +1,11 @@
 # @pdcode/utils
 
+## 2.2.0
+
+### Minor Changes
+
+- desc fit me fine
+
 ## 2.1.0
 
 ### Minor Changes

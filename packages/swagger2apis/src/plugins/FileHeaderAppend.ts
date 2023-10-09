@@ -10,7 +10,7 @@ export const createFileHeaderAppendPlugin = (headerString, testFn: (node, ctx: I
       renderRes.forEach((node) => {
         if (testFn(node, ctx)) node.content = headerString + node.content;
       });
-      printSuccInfo("文件头部追加插件[createFileHeaderAppendPlugin]已经完成文件头部内容的追加~");
+      printSuccInfo("[createFileHeaderAppendPlugin]已经完成文件头部内容的追加~");
     }
   };
 };

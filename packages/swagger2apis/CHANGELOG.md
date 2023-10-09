@@ -1,5 +1,16 @@
 # swagger2apis
 
+## 2.3.0
+
+### Minor Changes
+
+- desc fit me fine
+
+### Patch Changes
+
+- Updated dependencies
+  - @pdcode/utils@2.2.0
+
 ## 2.2.0
 
 ### Minor Changes

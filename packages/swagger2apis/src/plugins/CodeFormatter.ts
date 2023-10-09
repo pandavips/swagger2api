@@ -21,7 +21,7 @@ export const createCodeFormatterPlugin = (config: Options): IPlugin => {
         });
       }
 
-      printSuccInfo("文本格式化插件[createCodeFormatterPlugin]已经完成文本内容格式化~");
+      printSuccInfo("[createCodeFormatterPlugin]插件已经完成文本内容格式化~");
       return ctx;
     }
   };

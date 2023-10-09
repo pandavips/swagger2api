@@ -2,6 +2,7 @@ import { getCurrentDirName } from "@pdcode/utils";
 import { Eta } from "eta";
 import path from "node:path";
 import type { RednerFn } from "../plugin";
+import { printSuccInfo } from "@pdcode/utils";
 
 // 默认渲染函数
 export const renderByEta: RednerFn = async (ctx) => {
@@ -9,6 +10,7 @@ export const renderByEta: RednerFn = async (ctx) => {
   const eta = new (Eta as any)({
     views: path.join(getCurrentDirName(import.meta.url), "./template")
   });
+  printSuccInfo("默认渲染已经完成~");
   return [
     {
       content: eta.render("./apis", renderData),
@@ -108,6 +110,7 @@ export const createApiFileModularRender = (moduleDirName: string) => {
 
     // 创建入口文件渲染数据
     const indexRenderData = createApiFileEntryRenderData(apisDataGrouped, moduleDirName);
+    printSuccInfo("模块化渲染已经完成");
 
     return [
       indexRenderData,

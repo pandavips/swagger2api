@@ -12,7 +12,7 @@ export const createCompileTS2JSPlugin = (tsconfig = {}, prettierConfig = {}): IP
       const { writedFileList } = ctx;
       for await (const filePath of writedFileList) {
         if (blackExtNameList.every((extName) => filePath.includes(extName))) continue;
-        const res = compileTs(filePath, tsconfig);
+        const res = await compileTs(filePath, tsconfig);
         const content = await prettier.format(res.outputText, {
           parser: "typescript",
           printWidth: 200,
@@ -24,7 +24,7 @@ export const createCompileTS2JSPlugin = (tsconfig = {}, prettierConfig = {}): IP
         // 将编译后的 JavaScript 文件写入磁盘
         writeFile(join(filePathNoExtName!) + `.js`, content);
       }
-      printSuccInfo("TypeScript编译插件[createCompileTS2JSPlugin]已经完成对TypeScript文件的编译~");
+      printSuccInfo("[createCompileTS2JSPlugin]TypeScript编译插件已经完成对TypeScript文件的编译~");
     }
   };
 };

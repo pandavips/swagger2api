@@ -7,16 +7,14 @@ import { printErrInfo, printWarnInfo } from "@pdcode/utils";
 export const CompatibleApiFnNameOnOldversionHandle: IPlugin = {
   befofeRender(ctx) {
     printErrInfo(
-      "CompatibleApiFnNameOnOldversionHandle,老版本兼容插件开始工作\n",
-      "注意! 这个兼容插件可能无法保证没有遗漏的case\n",
-      "该插件会尝试尽可能的保留三个版本的方法名:老旧版本的byCode和byCode[codename],以及新版本的$[codeName]$\n",
+      "[CompatibleApiFnNameOnOldversionHandle]老版本方法名兼容插件开始工作\n",
       "因为以前的命名方式某些情况下会导致重复key的出现,所以新版采用了新的命名方式来避免,当发现有重复key的出现,后续重复的key将不再执行兼容处理~\n",
-      "然而如果有时间,还是建议修改项目来适配新本版,不应该过于依赖该兼容插件~ =.=\n"
+      "该插件会尝试尽可能的保留三个版本的方法名:以前版本的byCode和byCode[codename],以及新版本的$[codeName]$\n"
     );
     const { renderData } = ctx;
     const { apis } = renderData;
 
-    // 检车重复key的数据支撑
+    // 检测重复key的数据支撑
     const keyMap = new Set<string>();
 
     ctx.renderData.apis = apis
@@ -54,6 +52,6 @@ export const CompatibleApiFnNameOnOldversionHandle: IPlugin = {
         return api;
       })
       .flat();
-    printWarnInfo("CompatibleApiFnNameOnOldversionHandle插件似乎已经完成兼容老旧版本的请求方法名(可以尝试检查一下...)~");
+    printWarnInfo("[CompatibleApiFnNameOnOldversionHandle]插件处理完成,但无法保证覆盖所有case,若需要可自行实现插件覆盖需求~");
   }
 };
