@@ -1,0 +1,16 @@
+{
+  "name": "swagger2apis-demo",
+  "version": "1.0.3",
+  "description": "",
+  "main": "index.js",
+  "private": "true",
+  "scripts": {
+    "giveMeApis": "node ./index.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "swagger2apis": "workspace:^"
+  }
+}
