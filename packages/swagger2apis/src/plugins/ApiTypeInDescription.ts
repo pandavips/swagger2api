@@ -1,5 +1,4 @@
 import type { IPlugin } from "../plugin";
-import { printSuccInfo } from "@pdcode/utils";
 
 /** 在api描述中插入载荷类型描述内容,减少上下翻飞 */
 export const ApiTypeInDescription: IPlugin = {
@@ -20,11 +19,9 @@ export const ApiTypeInDescription: IPlugin = {
       });
       // 将类型挂载到api信息上
       api.interfaces = apiInterfaces;
-
       return api;
     });
 
-    printSuccInfo("ApiTypeInDescription插件已经完成载荷类型描述数据的插入~");
     return ctx;
   }
 };

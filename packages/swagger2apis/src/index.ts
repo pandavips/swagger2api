@@ -1,3 +1,3 @@
 export * from "./app";
 export * from "./plugins";
-export { getCurrentDirName } from "@pdcode/utils";
+export { getCurrentDirName, readFileAsString } from "@pdcode/utils";

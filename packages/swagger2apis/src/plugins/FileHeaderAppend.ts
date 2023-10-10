@@ -1,6 +1,5 @@
 import { IContext } from "../app";
 import type { IPlugin } from "../plugin";
-import { printSuccInfo } from "@pdcode/utils";
 
 export const createFileHeaderAppendPlugin = (headerString, testFn: (node, ctx: IContext) => boolean = () => true): IPlugin => {
   return {
@@ -10,7 +9,7 @@ export const createFileHeaderAppendPlugin = (headerString, testFn: (node, ctx: I
       renderRes.forEach((node) => {
         if (testFn(node, ctx)) node.content = headerString + node.content;
       });
-      printSuccInfo("[createFileHeaderAppendPlugin]已经完成文件头部内容的追加~");
+      return ctx;
     }
   };
 };

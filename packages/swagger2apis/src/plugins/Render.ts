@@ -2,7 +2,10 @@ import { getCurrentDirName } from "@pdcode/utils";
 import { Eta } from "eta";
 import path from "node:path";
 import type { RednerFn } from "../plugin";
-import { printSuccInfo } from "@pdcode/utils";
+import { IContext } from "../app";
+
+// 入口文件名称
+const ENTRY_FILE_NAME = "ApisCreator";
 
 // 默认渲染函数
 export const renderByEta: RednerFn = async (ctx) => {
@@ -10,12 +13,11 @@ export const renderByEta: RednerFn = async (ctx) => {
   const eta = new (Eta as any)({
     views: path.join(getCurrentDirName(import.meta.url), "./template")
   });
-  printSuccInfo("默认渲染已经完成~");
   return [
     {
       content: eta.render("./apis", renderData),
       extName: "ts",
-      fileName: "apis"
+      fileName: ENTRY_FILE_NAME
     },
     {
       content: eta.render("./interfaces", renderData),
@@ -66,14 +68,15 @@ export const createApiFileEntryRenderData = (apisDataGrouped: Map<string, any>, 
   return {
     content,
     extName: `ts`,
-    fileName: "getApis"
+    fileName: ENTRY_FILE_NAME
   };
 };
 
 // 自定义渲染器实现按照组模块化放置api文件
 export const createApiFileModularRender = (moduleDirName: string) => {
-  return (ctx) => {
-    const { renderData } = ctx;
+  return (ctx: IContext) => {
+    const { renderData, config } = ctx;
+    const { outDir } = config;
     const eta = new (Eta as any)({
       views: path.join(getCurrentDirName(import.meta.url), "./template")
     });
@@ -104,13 +107,12 @@ export const createApiFileModularRender = (moduleDirName: string) => {
         content: eta.render("./apis", { apis: value.rows }),
         extName: `ts`,
         fileName: key,
-        path: "./" + moduleDirName + "/"
+        path: path.join(outDir!, "./" + moduleDirName + "/")
       };
     });
 
     // 创建入口文件渲染数据
     const indexRenderData = createApiFileEntryRenderData(apisDataGrouped, moduleDirName);
-    printSuccInfo("模块化渲染已经完成");
 
     return [
       indexRenderData,

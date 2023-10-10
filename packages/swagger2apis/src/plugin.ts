@@ -4,17 +4,17 @@ import type { IContext } from "./app";
 
 export interface IPlugin {
   // 数据集进行转换前
-  beforeTransform?: (context: IContext) => any;
+  beforeTransform?: (context: IContext) => Promise<IContext> | IContext;
   // 数据集进行转换后
-  afterTransform?: (context: IContext) => any;
+  afterTransform?: (context: IContext) => Promise<IContext> | IContext;
   // 数据进行渲染前
-  befofeRender?: (context: IContext) => any;
+  befofeRender?: (context: IContext) => Promise<IContext> | IContext;
   // 数据进行渲染后
-  afterRender?: (context: IContext) => any;
+  afterRender?: (context: IContext) => Promise<IContext> | IContext;
   // 文件写入前
-  beforeWriteFile?: (context: IContext) => any;
+  beforeWriteFile?: (context: IContext) => Promise<IContext> | IContext;
   // 文件写入后
-  afterWriteFile?: (context: IContext) => any;
+  afterWriteFile?: (context: IContext) => Promise<IContext> | IContext;
 }
 export interface IPlugins {
   beforeTransform: IPlugin[];

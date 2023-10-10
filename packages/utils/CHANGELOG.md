@@ -1,5 +1,23 @@
 # @pdcode/utils
 
+## 2.2.3
+
+### Patch Changes
+
+- 一些修正
+
+## 2.2.2
+
+### Patch Changes
+
+- 忘记打包 真是sorry
+
+## 2.2.1
+
+### Patch Changes
+
+- 从主分支发行
+
 ## 2.2.0
 
 ### Minor Changes

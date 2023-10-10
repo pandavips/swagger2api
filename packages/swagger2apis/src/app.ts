@@ -59,29 +59,23 @@ export const create = (rawJSON = "", config?: Config) => {
       let once = false;
       return async () => {
         if (once) throw new Error("start函数应该只被调用一次,如果你有需求多次处理应该考虑使用插件系统来完成~");
-        printSuccInfo("开始流程~");
         // 启动转换层
         await pluginRun(context, "beforeTransform");
         context.transformEdJson = transform(context);
         await pluginRun(context, "afterTransform");
-        printSuccInfo("转换层已经完成数据转换~");
         // 启动渲染层
         context.renderRes = await render(context);
         await pluginRun(context, "afterRender");
-        printSuccInfo("渲染层已经完成数据渲染~");
         // 写入文件
-        printSuccInfo("开始尝试写入文件~");
         await pluginRun(context, "beforeWriteFile");
         for await (const node of context.renderRes) {
           const path = (node.path || finalConfig.outDir) + node.fileName + "." + node.extName;
-          context.writedFileList.push(await writeFile(path, node.content));
+          const file = await writeFile(path, node.content);
+          context.writedFileList.push(file);
         }
         await pluginRun(context, "afterWriteFile");
-        printSuccInfo("写入文件已经完成~");
-
         once = true;
-
-        printSuccInfo("整个流程完成~enjoy it~");
+        printSuccInfo("流程完成~enjoy it~");
       };
     })()
   };

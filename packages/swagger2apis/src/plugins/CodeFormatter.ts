@@ -1,5 +1,3 @@
-import { printSuccInfo } from "@pdcode/utils";
-
 // 文件内容格式化插件
 
 import type { Options } from "prettier";
@@ -10,7 +8,6 @@ export const createCodeFormatterPlugin = (config: Options): IPlugin => {
   return {
     beforeWriteFile: async (ctx) => {
       const { renderRes } = ctx;
-
       for await (const node of renderRes) {
         node.content = await prettier.format(node.content, {
           parser: "typescript",
@@ -20,8 +17,6 @@ export const createCodeFormatterPlugin = (config: Options): IPlugin => {
           ...config
         });
       }
-
-      printSuccInfo("[createCodeFormatterPlugin]插件已经完成文本内容格式化~");
       return ctx;
     }
   };

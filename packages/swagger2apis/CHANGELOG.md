@@ -1,5 +1,41 @@
 # swagger2apis
 
+## 2.5.0
+
+### Minor Changes
+
+- 入口文件更改
+
+## 2.4.1
+
+### Patch Changes
+
+- 一些修正
+- Updated dependencies
+  - @pdcode/utils@2.2.3
+
+## 2.4.0
+
+### Minor Changes
+
+- .d.ts 拓展修复
+
+## 2.3.2
+
+### Patch Changes
+
+- 忘记打包 真是sorry
+- Updated dependencies
+  - @pdcode/utils@2.2.2
+
+## 2.3.1
+
+### Patch Changes
+
+- 从主分支发行
+- Updated dependencies
+  - @pdcode/utils@2.2.1
+
 ## 2.3.0
 
 ### Minor Changes
