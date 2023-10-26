@@ -3,7 +3,6 @@ import type { IPlugin } from "../plugin";
 
 export const createFileHeaderAppendPlugin = (headerString, testFn: (node, ctx: IContext) => boolean = () => true): IPlugin => {
   return {
-    // 其实也可以使用beforedWrite钩子来写
     afterRender(ctx) {
       const { renderRes } = ctx;
       renderRes.forEach((node) => {

@@ -4,7 +4,7 @@ import type { Options } from "prettier";
 import prettier from "prettier";
 import type { IPlugin } from "../plugin";
 
-export const createCodeFormatterPlugin = (config: Options): IPlugin => {
+export const createCodeFormatterPlugin = (config: Options = {}): IPlugin => {
   return {
     beforeWriteFile: async (ctx) => {
       const { renderRes } = ctx;
@@ -21,5 +21,4 @@ export const createCodeFormatterPlugin = (config: Options): IPlugin => {
     }
   };
 };
-
-export const CodeFormatter: IPlugin = createCodeFormatterPlugin({});
+export const CodeFormatter: IPlugin = createCodeFormatterPlugin();

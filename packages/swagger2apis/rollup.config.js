@@ -1,9 +1,7 @@
 import rollupTypescript from "@rollup/plugin-typescript";
 import { terser } from "rollup-plugin-terser";
-// import dts from "rollup-plugin-dts";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
-// import nodeResolve from '@rollup/plugin-node-resolve';
 import copy from "rollup-plugin-copy";
 import tsconfig from "./tsconfig.json";
 
@@ -27,13 +25,11 @@ export default [
       }
     ],
     plugins: [
-      rollupTypescript(),
       commonjs({
         include: /node_modules/
       }),
       json(),
       terser(),
-      // nodeResolve(),
       copy({
         targets: [
           // 拷贝模板文件
