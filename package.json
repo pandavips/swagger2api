@@ -25,7 +25,7 @@
     "lint-staged:run": "lint-staged",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "publish": "pnpm changeset publish"
+    "publish": "nrm use npm && pnpm changeset publish"
   },
   "license": "ISC",
   "devDependencies": {

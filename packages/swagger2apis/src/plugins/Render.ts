@@ -28,7 +28,7 @@ export const renderByEta: RednerFn = async (ctx) => {
 };
 
 // apis数据整理分组
-export const apisRenderDataGrouped = (apis) => {
+export const apisRenderDataGrouped = (apis: any[]) => {
   // 整理分组
   const res = new Map();
   apis.forEach((api) => {

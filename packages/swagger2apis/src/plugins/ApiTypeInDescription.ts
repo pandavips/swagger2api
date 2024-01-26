@@ -18,7 +18,7 @@ export const ApiTypeInDescription: IPlugin = {
         }
       });
       // 将类型挂载到api信息上
-      api.interfaces = apiInterfaces;
+      api.interfaces = apiInterfaces || [];
       return api;
     });
 

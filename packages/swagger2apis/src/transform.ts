@@ -230,6 +230,7 @@ const coverQueryParameters2Bodyfit = (parameters: any) => {
 
 // 解析properties
 export const resolveProperties = (properties: any, requiredProps: string[] = []) => {
+  if (!properties) return [];
   return Reflect.ownKeys(properties).map((propName) => {
     const rawProp = properties[propName];
     const { type, $ref, items, description, allowEmptyValue } = rawProp;

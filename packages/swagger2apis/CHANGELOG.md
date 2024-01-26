@@ -1,5 +1,17 @@
 # swagger2apis
 
+## 3.0.0
+
+### Major Changes
+
+- 修复某些接口下的null
+
+## 2.5.1
+
+### Patch Changes
+
+- 添加了使用文档
+
 ## 2.5.0
 
 ### Minor Changes
