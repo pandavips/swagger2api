@@ -38,9 +38,10 @@ export default [
       }),
       rollupTypescript({
         outDir: "dist",
-        declarationDir: "dist",
+        declarationDir: "dts",
         exclude: "example",
-        compilerOptions: tsconfig.compilerOptions
+        compilerOptions: tsconfig.compilerOptions,
+        tsconfig: "./tsconfig.json"
       })
     ],
     external: externalLib
