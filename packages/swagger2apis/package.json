@@ -6,7 +6,7 @@
   "type": "module",
   "main": "./dist/main.esm.mjs",
   "module": "./dist/main.esm.mjs",
-  "types": "./dist/dts/index.d.ts",
+  "types": "./dist/dts/src/index.d.ts",
   "keywords": [
     "swagger",
     "api",
