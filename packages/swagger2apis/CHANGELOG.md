@@ -1,5 +1,11 @@
 # swagger2apis
 
+## 2.7.0
+
+### Minor Changes
+
+- 54afbc1: 修复ts声明文件
+
 ## 3.0.0
 
 ### Major Changes
