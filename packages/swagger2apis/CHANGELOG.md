@@ -1,5 +1,11 @@
 # swagger2apis
 
+## 2.6.2
+
+### Patch Changes
+
+- dtx path fix
+
 ## 2.7.0
 
 ### Minor Changes
