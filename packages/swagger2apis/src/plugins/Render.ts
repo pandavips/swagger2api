@@ -1,4 +1,4 @@
-import { getCurrentDirName } from "@pdcode/utils";
+import { getCurrentDirName, removeSpecialCharacter } from "@pdcode/utils";
 import { Eta } from "eta";
 import path from "node:path";
 import type { RednerFn } from "../plugin";
@@ -31,8 +31,8 @@ export const renderByEta: RednerFn = async (ctx) => {
 export const apisRenderDataGrouped = (apis: any[]) => {
   // 整理分组
   const res = new Map();
-  apis.forEach((api) => {
-    const moduleFileName = api.path.split("/")[1] || "orphan";
+  apis.forEach((api, index) => {
+    const moduleFileName = removeSpecialCharacter(api.path.split("/")[1]) || "orphan" + index;
     const moduleDescription = api.raw.tags?.[0];
     const newApi = { ...api, moduleFileName, moduleDescription };
     if (res.has(moduleFileName)) {
@@ -64,7 +64,6 @@ export const createApiFileEntryRenderData = (apisDataGrouped: Map<string, any>, 
     content += `  ...${key}(request),\n`;
   });
   content += `})\n`;
-
   return {
     content,
     extName: `ts`,
@@ -81,7 +80,6 @@ export const createApiFileModularRender = (moduleDirName: string) => {
       views: path.join(getCurrentDirName(import.meta.url), "./template")
     });
     const { apis } = renderData;
-
     // 整理分组
     const map = new Map();
     apis.forEach((api) => {
