@@ -1,5 +1,17 @@
 # swagger2apis
 
+## 2.6.5
+
+### Patch Changes
+
+- 修复api方法名中出现特殊字符的情况
+
+## 2.6.4
+
+### Patch Changes
+
+- same problem
+
 ## 2.6.3
 
 ### Patch Changes

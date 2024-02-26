@@ -1,9 +1,9 @@
 /**
  * 负责将数据与模板结合完成渲染
  */
-import { firstUpperCase } from "@pdcode/utils";
-import { IContext } from "./app";
+import { firstUpperCase, removeSpecialCharacter } from "@pdcode/utils";
 
+import { IContext } from "./app";
 export const getRenderData = (transformEdJson: any) => {
   const { apis: apisData, interfaces } = transformEdJson;
   return { apis: renderApis(apisData), interfaces };
@@ -18,7 +18,6 @@ const renderApis = (apisData) => {
     const responseType = renderResponeseType(api);
     const path = renderPath(api);
     const method = renderMethod(api);
-
     return {
       helpInfo,
       fnName,
@@ -38,7 +37,13 @@ export const renderReqFnName = (api) => {
   const { hasPathParameter } = helpInfo;
   let path = api.path;
   hasPathParameter && (path = api.path.replaceAll(/[{}]/g, "$"));
-  return path.split("/").slice(1).map(firstUpperCase).join("_") + api.method.toUpperCase();
+  return (
+    path
+      .split("/")
+      .slice(1)
+      .map((str) => removeSpecialCharacter(firstUpperCase(str)))
+      .join("_") + api.method.toUpperCase()
+  );
 };
 
 // 渲染api描述
