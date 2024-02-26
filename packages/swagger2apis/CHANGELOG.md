@@ -1,5 +1,11 @@
 # swagger2apis
 
+## 2.6.3
+
+### Patch Changes
+
+- 修复模块渲染器文件名称,方案为去掉所有特殊字符
+
 ## 2.6.2
 
 ### Patch Changes

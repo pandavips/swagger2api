@@ -41,6 +41,7 @@ export const chineseCharacter2pinyin = (character: string) => {
 
 // 去除字符串中所有特殊字符
 export const removeSpecialCharacter = (str: string) => {
+  if (!str) return "";
   return str.replace(/[^\w\s]/gi, "");
 };
 

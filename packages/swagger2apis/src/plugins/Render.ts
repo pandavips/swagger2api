@@ -32,7 +32,7 @@ export const apisRenderDataGrouped = (apis: any[]) => {
   // 整理分组
   const res = new Map();
   apis.forEach((api, index) => {
-    const moduleFileName = removeSpecialCharacter(api.path.split("/")[1]) || "orphan" + index;
+    const moduleFileName = removeSpecialCharacter(api.path.split("/")[1] || "orphan" + index);
     const moduleDescription = api.raw.tags?.[0];
     const newApi = { ...api, moduleFileName, moduleDescription };
     if (res.has(moduleFileName)) {
