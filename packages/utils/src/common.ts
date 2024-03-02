@@ -42,7 +42,10 @@ export const chineseCharacter2pinyin = (character: string) => {
 // 去除字符串中所有特殊字符
 export const removeSpecialCharacter = (str: string) => {
   if (!str) return "";
-  return str.replace(/[^\w\s]/gi, "");
+  // 某些字符需要保留
+  const reserved = ["$"];
+  // return str.replace(/[^\w\s]/gi, "");
+  return str.replace(new RegExp(`[^\\w\\s${reserved.join("")}]`, "gi"), "");
 };
 
 // 判断是否是一个http url

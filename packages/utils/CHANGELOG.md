@@ -1,5 +1,11 @@
 # @pdcode/utils
 
+## 2.2.4
+
+### Patch Changes
+
+- 特殊字符函数调整(白名单)
+
 ## 2.2.3
 
 ### Patch Changes

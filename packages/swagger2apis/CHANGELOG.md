@@ -1,5 +1,18 @@
 # swagger2apis
 
+## 2.6.7
+
+### Patch Changes
+
+- Updated dependencies
+  - @pdcode/utils@2.2.4
+
+## 2.6.6
+
+### Patch Changes
+
+- 特殊字符白名单
+
 ## 2.6.5
 
 ### Patch Changes
