@@ -6,7 +6,76 @@ import { IContext } from "../app";
 
 // 入口文件名称
 const ENTRY_FILE_NAME = "ApisCreator";
-const keywords = ["abstract","await","boolean","break","byte","case","catch","char","class","const","continue","debugger","default","delete","do","double","else","enum","export","extends","false","final","finally","float","for","function","goto","if","implements","import","in","instanceof","int","interface","let","long","native","new","null","package","private","protected","public","return","short","static","super","switch","synchronized","this","throw","throws","transient","true","try","typeof","var","void","volatile","while","with","yield","enum","extends","super","module","import","process"]
+const keywords = [
+  "abstract",
+  "await",
+  "boolean",
+  "break",
+  "byte",
+  "case",
+  "catch",
+  "char",
+  "class",
+  "const",
+  "continue",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "double",
+  "else",
+  "enum",
+  "export",
+  "extends",
+  "false",
+  "final",
+  "finally",
+  "float",
+  "for",
+  "function",
+  "goto",
+  "if",
+  "implements",
+  "import",
+  "in",
+  "instanceof",
+  "int",
+  "interface",
+  "let",
+  "long",
+  "native",
+  "new",
+  "null",
+  "package",
+  "private",
+  "protected",
+  "public",
+  "return",
+  "short",
+  "static",
+  "super",
+  "switch",
+  "synchronized",
+  "this",
+  "throw",
+  "throws",
+  "transient",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "volatile",
+  "while",
+  "with",
+  "yield",
+  "enum",
+  "extends",
+  "super",
+  "module",
+  "import",
+  "process"
+];
 
 // 默认渲染函数
 export const renderByEta: RednerFn = async (ctx) => {
@@ -57,12 +126,12 @@ export const createApiFileEntryRenderData = (apisDataGrouped: Map<string, any>, 
   const keys = [...apisDataGrouped.entries()].map(([key]) => key);
   [...apisDataGrouped.entries()].map(([key, val]) => {
     content += `// ${[...val.descriptions].join("+")} \n`;
-    content += `import ${keywords.includes(key)?key+'_1':key} from './${moduleDirName}/${key}'\n`;
+    content += `import ${keywords.includes(key) ? key + "_1" : key} from './${moduleDirName}/${key}'\n`;
   });
 
   content += `export default (request)=> ({\n`;
   keys.forEach((key) => {
-    content += `  ...${keywords.includes(key)?key+'_1':key}(request),\n`;
+    content += `  ...${keywords.includes(key) ? key + "_1" : key}(request),\n`;
   });
   content += `})\n`;
   return {
