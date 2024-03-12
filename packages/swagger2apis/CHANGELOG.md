@@ -1,5 +1,11 @@
 # swagger2apis
 
+## 2.6.8
+
+### Patch Changes
+
+- 修复接口中出现js关键保留字的情况
+
 ## 2.6.7
 
 ### Patch Changes
