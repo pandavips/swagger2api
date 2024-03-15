@@ -1,5 +1,11 @@
 # swagger2apis
 
+## 2.6.9
+
+### Patch Changes
+
+- fix:修复可能随意定义的api
+
 ## 2.6.8
 
 ### Patch Changes

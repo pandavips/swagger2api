@@ -29,7 +29,9 @@ export const CompatibleApiFnNameOnOldversionHandle: IPlugin = {
         if (helpInfo.hasPathParameter) {
           // 匹配$xxx$
           const reg = /\$(.*?)\$/;
-          const codeName = api.fnName.match(reg)[1];
+          const matchRes = api.fnName.match(reg);
+          if (!matchRes) return [api];
+          const codeName = matchRes[1];
           const fnName1 = api.fnName.replace(`$${codeName}$`, "ByCode");
           const fnName2 = api.fnName.replace(`$${codeName}$`, "ByCode" + firstUpperCase(codeName));
           return [
